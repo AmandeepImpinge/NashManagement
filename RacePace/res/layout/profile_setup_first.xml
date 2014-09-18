@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/internalscreens_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/topbar_blue_back_color" >
+
+        <com.runtwo.customfonts.TextViewHelrWOne
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Profile Setup"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <com.runtwo.customfonts.TextViewHelrWOne
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="Edit"
+            android:textColor="@android:color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/default_user_image_square" />
+
+                <TextView
+                    android:id="@+id/upload_pic_btn"
+                    android:layout_width="120dp"
+                    android:layout_height="25dp"
+                    android:background="@color/upload_pic_back"
+                    android:gravity="center"
+                    android:text="Upload Picture"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/first_name"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="First Name"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/last_name"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Last Name"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.runtwo.customfonts.EditTextHelveticaLtZero
+                android:id="@+id/email_address"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/textbox_back"
+                android:gravity="center_vertical"
+                android:hint="Email Address"
+                android:padding="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/pass"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="60"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Password"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:id="@+id/chane_pass_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="40"
+                    android:background="@color/topbar_blue_back_color"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:text="Change Password"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/country_name"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Country"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/city_name"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="City"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Address"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/zip_code"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Zip Code"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/running_team"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Running Team"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/fav_quote"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Favourite Quote"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/dob"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Date Of Birth"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/sex"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Sex"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

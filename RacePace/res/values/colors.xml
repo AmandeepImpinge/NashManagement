@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="textbox_back">#ffffff</color>
+    <color name="textbox_border">#e1e1e1</color>
+    <color name="login_btn_color">#004D9D</color>
+    <color name="fb_btn_color">#3B589C</color>
+    <color name="twitter_btn_color">#32CCFE</color>
+    <color name="topbar_blue_back_color">#1a8afd</color>
+    <color name="blue_border_color">#1a8afd</color>
+    <color name="bottom_bar_back_color">#1c1d22</color>
+    <color name="bottom_back_selected_color">#1a8afd</color>
+    <color name="red_btn_color">#e63838</color>
+    <color name="run_figure_pannel_back_color">#f8f8f8</color>
+    <color name="run_figure_pannel_border_color">#d9d9d9</color>
+    <color name="navigation_back_color">#ffffff</color>
+    <color name="navigation_bottom_border_color">#e7e7e7</color>
+    
+    <color name="login_textbox_color">#b6adad</color>
+    <color name="blue_text_color">#1a8afd</color>
+    <color name="dark_grey_text_color">#333333</color>
+    <color name="light_grey_text_color">#999999</color>
+    <color name="white_text_color">#ffffff</color>
+    
+    <color name="search_edit_back">#F4F4F4</color>
+    <color name="lightest_grey">#D8D8D8</color>
+    
+    <color name="start_btn_back">#24B326</color>
+    <color name="media_player_back_color">#413D3C</color>
+    
+    <color name="post_text_box_back">#F6F4F5</color>
+    <color name="attach_photo_back">#E3E3E3</color>
+    
+    <color name="cancel_btn_back">#494949</color>
+    
+    <color name="run_usa_top_tab_back">#0B5FB5</color>
+    
+    <color name="slide_btn_back">#FF921D</color>
+    <color name="stop_btn_back">#E63839</color>
+    
+    <color name="upload_pic_back">#DFDFDF</color>
+    
+    <color name="route_line_color">#7f0000ff</color>
+    
+</resources>

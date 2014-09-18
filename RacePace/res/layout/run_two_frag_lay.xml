@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--
+         <com.racepace.main.ActionBarUserInfo
+        android:id="@+id/action_bar" 
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+    -->
+
+    <include
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        layout="@layout/action_bar_user_info" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+            android:id="@+id/no_miles"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="0.00"
+            android:textColor="@android:color/black"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+        <com.runtwo.customfonts.TextViewHelveticaLtZero
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center_horizontal"
+            android:text="MILES"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/light_grey_text_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="90" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="00:00"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DURATION"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:id="@+id/curr_pace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="00:00"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CURRENT PACE"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="30"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:id="@+id/calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CALORIES"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/map_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/start_btn_container" >
+
+            <fragment
+                android:id="@+id/map_run"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:name="com.racepace.main.GoRunFragment"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                />
+            
+            <LinearLayout 
+                android:id="@+id/map_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                />
+            
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/start_btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true" >
+
+            <LinearLayout
+                android:id="@+id/resume_stop_container"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="100" >
+                
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:id="@+id/resume_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="match_parent"
+                    android:text="RESUME"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:background="@color/start_btn_back"
+                    />
+                
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:id="@+id/stop_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="50"
+                    android:layout_height="match_parent"
+                    android:text="STOP"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:background="@color/stop_btn_back"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/slide_btn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/slide_btn_back"
+                android:gravity="center"
+                android:visibility="gone"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/right_arrow" />
+
+                <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="SLIDE TO PAUSE"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.runtwo.customfonts.TextViewHelveticaBdcnZero
+                android:id="@+id/start_btn"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/start_btn_back"
+                android:gravity="center"
+                android:text="START"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <RelativeLayout 
+            android:id="@+id/media_container" 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/start_btn_container"
+            android:background="@color/media_player_back_color"
+            android:paddingTop="35dp"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:id="@+id/top_media_info_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp" >
+
+                <ImageView
+                    android:id="@+id/song_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_grey_text_color" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:id="@+id/song_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/song_img"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_toLeftOf="@+id/song_btn_container"
+                    android:layout_toRightOf="@+id/song_img"
+                    android:singleLine="true"
+                    android:text="DEAD BOY&apos;S POEM"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <com.runtwo.customfonts.TextViewHelveticaLtZero
+                    android:id="@+id/artist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/song_name"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toLeftOf="@+id/song_btn_container"
+                    android:layout_toRightOf="@+id/song_img"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="by NightWish"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="9sp" />
+
+                <!--
+                         <RatingBar
+                        android:id="@+id/ratings"
+                        style="@style/customratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="5dp"
+                        android:rating="4" />
+                -->
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@+id/artist"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/song_img"
+                    android:orientation="horizontal"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/first_star"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/rating_star_filled" />
+
+                    <ImageView
+                        android:id="@+id/sec_star"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/rating_star_filled" />
+
+                    <ImageView
+                        android:id="@+id/third_star"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/rating_star_filled" />
+
+                    <ImageView
+                        android:id="@+id/fourth_star"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/rating_star_filled" />
+
+                    <ImageView
+                        android:id="@+id/fifth_star"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/rating_star_empty" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/song_btn_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/image_seprator" />
+
+                    <ImageView
+                        android:id="@+id/music_btn"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/options_icon" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seek_container"
+                android:layout_below="@+id/top_media_info_container" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:weightSum="90" >
+
+                    <RelativeLayout
+                        android:id="@+id/prev_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="30" >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/previous_song_btn" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/play_pause_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="30" >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/play_btn" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/next_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="30" >
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:src="@drawable/next_song_btn" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/seek_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:paddingBottom="8dp" >
+
+                <SeekBar
+                    android:id="@+id/song_seek_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/seek_bar_layer"
+                    android:thumb="@android:color/transparent" />
+
+                <TextView
+                    android:id="@+id/time_elasped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/song_seek_bar"
+                    android:text="1:17"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/total_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/song_seek_bar"
+                    android:text="4:50"
+                    android:textColor="@color/light_grey_text_color"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/top_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#98FFFFFF"
+            android:orientation="horizontal"
+            android:weightSum="100" >
+
+            <RelativeLayout
+                android:id="@+id/map_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50" >
+
+                <ImageView
+                    android:id="@+id/map_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/map_icon_selected" />
+
+                <View
+                    android:id="@+id/map_bottom_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/topbar_blue_back_color" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/media_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50" >
+
+                <ImageView
+                    android:id="@+id/media_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/music_player_icon_unselected" />
+
+                <View
+                    android:id="@+id/media_bottom_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/dark_grey_text_color" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
