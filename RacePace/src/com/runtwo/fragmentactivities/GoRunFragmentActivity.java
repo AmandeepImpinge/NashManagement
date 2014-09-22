@@ -101,7 +101,7 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		//for use in map 
 		firstTime = true;
 		map_container = (RelativeLayout)findViewById(R.id.map_container);
-		map_cover = (LinearLayout)findViewById(R.id.map_cover);
+		//map_cover = (LinearLayout)findViewById(R.id.map_cover);
 		
 		initMap();
 		initViews();

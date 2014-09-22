@@ -17,14 +17,12 @@ public class EditTextHelveticaLtZero extends EditText{
 		init();
 	}
 	
-	public EditTextHelveticaLtZero(Context context, AttributeSet attrs,
-			int defStyle) {
+	public EditTextHelveticaLtZero(Context context, AttributeSet attrs,int defStyle) {
 		super(context, attrs, defStyle);
 		init();
 	}
 
 	public void init(){
-		
 		Typeface tf = Typeface.createFromAsset(getContext().getAssets(),"helvetica_neue_ltstd_lt_0.otf");
 		setTypeface(tf);
 	}

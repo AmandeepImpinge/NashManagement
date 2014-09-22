@@ -644,11 +644,13 @@ public class WebServiceHandler {
 
 		try {
 			JSONObject obj = new JSONObject();
+			
+			
 			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
 			obj.put(GlobalConstants.POST_IMAGE_NAME,imgname);
 			obj.put(GlobalConstants.POST_PROFILE_IMAGE,""+img);
 			obj.put(GlobalConstants.POST_DESC,""+desc);
-			obj.put(GlobalConstants.POST_FEED_TYPE,""+GlobalConstants.POST_KEY);
+			obj.put(GlobalConstants.POST_FEED_TYPE,GlobalConstants.POST_KEY);
 			
 			HttpClient client = new DefaultHttpClient();
             HttpResponse response;

@@ -48,6 +48,13 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	TextView wallText,photosText,meText,togetherText,workoutText;
 	ImageView wallImg,photosImg,meImg,togetherImg,workoutImg;
 	LinearLayout wallLay,photosLay,meLay,togetherLay,workoutLay;
+	//===
+	
+	//List and Grid Btns
+	ImageView listBtnWall,gridBtnWall,listBtnPhotos,gridBtnPhotos,listBtnMe,gridBtnMe,
+			  listBtnTogether,gridBtnTogether,listBtnWorkout,gridBtnWorkout;
+	//===
+	
 	int CurrentCustomTab = 1;
 	
 	@Override
@@ -127,6 +134,20 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		togetherLay = (LinearLayout)container.findViewById(R.id.together_lay);
 		workoutLay = (LinearLayout)container.findViewById(R.id.workout_lay);
 		//===============
+		
+		//List grid Btns
+		listBtnWall = (ImageView)container.findViewById(R.id.list_btn_wall);
+		gridBtnWall = (ImageView)container.findViewById(R.id.grid_btn_wall);
+		listBtnPhotos = (ImageView)container.findViewById(R.id.list_btn_photos);
+		gridBtnPhotos = (ImageView)container.findViewById(R.id.grid_btn_photos);
+		listBtnMe = (ImageView)container.findViewById(R.id.list_btn_me);
+		gridBtnMe = (ImageView)container.findViewById(R.id.grid_btn_me);
+		listBtnTogether = (ImageView)container.findViewById(R.id.list_btn_together);
+		gridBtnTogether = (ImageView)container.findViewById(R.id.grid_btn_together);
+		listBtnWorkout = (ImageView)container.findViewById(R.id.list_btn_workout);
+		gridBtnWorkout = (ImageView)container.findViewById(R.id.grid_btn_workout);
+		//==============
+		
 	}
 
 	private void handleClicks(){
@@ -202,6 +223,67 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 					handleCustomTabsClicked(5);
 					CurrentCustomTab = 5;
 				}
+			}
+		});
+		
+		listBtnWall.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnWall.setImageResource(R.drawable.list_btn_selected);
+				gridBtnWall.setImageResource(R.drawable.grid_btn_unselected);
+			}
+		});
+		gridBtnWall.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnWall.setImageResource(R.drawable.list_btn_unselected);
+				gridBtnWall.setImageResource(R.drawable.grid_btn_selected);
+			}
+		});
+		listBtnPhotos.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnPhotos.setImageResource(R.drawable.list_btn_selected);
+				gridBtnPhotos.setImageResource(R.drawable.grid_btn_unselected);
+			}
+		});
+		gridBtnPhotos.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnPhotos.setImageResource(R.drawable.list_btn_unselected);
+				gridBtnPhotos.setImageResource(R.drawable.grid_btn_selected);
+			}
+		});
+		listBtnMe.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnMe.setImageResource(R.drawable.list_btn_selected);
+				gridBtnMe.setImageResource(R.drawable.grid_btn_unselected);
+			}
+		});
+		gridBtnMe.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnMe.setImageResource(R.drawable.list_btn_unselected);
+				gridBtnMe.setImageResource(R.drawable.grid_btn_selected);
+			}
+		});
+		listBtnTogether.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnTogether.setImageResource(R.drawable.list_btn_selected);
+				gridBtnTogether.setImageResource(R.drawable.grid_btn_unselected);
+			}
+		});
+		gridBtnTogether.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnTogether.setImageResource(R.drawable.list_btn_unselected);
+				gridBtnTogether.setImageResource(R.drawable.grid_btn_selected);
+			}
+		});
+		listBtnWorkout.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnWorkout.setImageResource(R.drawable.list_btn_selected);
+				gridBtnWorkout.setImageResource(R.drawable.grid_btn_unselected);
+			}
+		});
+		gridBtnWorkout.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				listBtnWorkout.setImageResource(R.drawable.list_btn_unselected);
+				gridBtnWorkout.setImageResource(R.drawable.grid_btn_selected);
 			}
 		});
 	}

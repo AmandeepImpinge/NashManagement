@@ -23,6 +23,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 
@@ -86,14 +87,13 @@ public class ImageFileManipulation {
 			bmp = null;
 			ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 			scaledBmp.compress(Bitmap.CompressFormat.JPEG, (int) (100 * ImageFileManipulation.IAMGE_COMPRESSION_RATIO), bytes);
-			imagePath = ImageFileManipulation.EXTERNAL_MEMORY + getFileName() + ".jpeg";
+			imagePath = Environment.getExternalStorageDirectory() + getFileName() + ".jpeg";
 			boolean isFileCreate = createFileInData(imagePath, bytes.toByteArray());
 			if (!isFileCreate)// if file is not created return null
 				return null;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 
 		return imagePath;

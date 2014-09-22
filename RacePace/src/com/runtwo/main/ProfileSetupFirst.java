@@ -15,6 +15,9 @@ public class ProfileSetupFirst extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		container = (LinearLayout)inflater.inflate(R.layout.profile_setup_first,null);
 		
+		
+		
+		
 		return container;
 	}
 	

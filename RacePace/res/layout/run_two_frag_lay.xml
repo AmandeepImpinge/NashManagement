@@ -139,7 +139,7 @@
             android:id="@+id/map_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/start_btn_container" >
+             >
 
             <fragment
                 android:id="@+id/map_run"
@@ -162,8 +162,12 @@
         <RelativeLayout
             android:id="@+id/start_btn_container"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true" >
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="8dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            >
 
             <LinearLayout
                 android:id="@+id/resume_stop_container"
@@ -183,7 +187,7 @@
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:gravity="center"
-                    android:background="@color/start_btn_back"
+                    android:background="@color/topbar_blue_back_color"
                     />
                 
                 <com.runtwo.customfonts.TextViewHelveticaBdcnZero

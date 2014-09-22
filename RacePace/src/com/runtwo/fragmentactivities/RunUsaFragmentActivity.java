@@ -41,7 +41,8 @@ public class RunUsaFragmentActivity extends FragmentActivity{
 	String filename3 = "run_across_america_3rd_1000";
 	String filename4 = "run_across_america_4th_1000";
 	String filename5 = "run_across_america_5th_1000";
-	String routeFileNames[] = {filename,filename2,filename3,filename4,filename5};
+	String filename6 = "run_across_america_6th_1000";
+	String routeFileNames[] = {filename,filename2,filename3,filename4,filename5,filename6};
 	NavigationDataSet routeDataSet;
 	ProgressDialog pd;
 	Polyline route;
@@ -123,43 +124,29 @@ public class RunUsaFragmentActivity extends FragmentActivity{
 	public class RouteLoader extends AsyncTask<String,Integer,String>{
 		ArrayList<String> tempCoodList = new ArrayList<String>();
 		
-		//Serializer kmlSerializer;
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			//kmlSerializer = new Serializer();  
 			pd = new ProgressDialog(RunUsaFragmentActivity.this).show(RunUsaFragmentActivity.this,"","Loading Route...");
 		}
 		
 		@Override
 		protected String doInBackground(String... params) {
 			try {
-				//routeDataSet = MapService.getNavigationDataSet(params[0],getActivity());
-				
-				/*if(routeDataSet.getPlacemarks().size() > 0){
-					//create polyoptions while progress dialog is shown
-					generatePolylineForMap();
-				}else{
-					Log.e("size","zero");
-				}*/
-				
-				for(int i=0;i<5;i++){
+				for(int i=0;i<routeFileNames.length;i++){
 					tempCoodList = MapService.getNavigationArrayList(routeFileNames[i],RunUsaFragmentActivity.this);
 					coordinatelist.addAll(tempCoodList);
 				}
-				
 				if(coordinatelist.size() > 0){
 					//create polyoptions while progress dialog is shown
 					generatePolylineForMap();
 				}else{
 					Log.e("size","zero");
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return null;
-			
 		}
 		
 		@Override
@@ -193,11 +180,9 @@ public class RunUsaFragmentActivity extends FragmentActivity{
 					if(i == 0){
 						startLat = lat;
 						startLng = lng;
-						Log.e("start lats lngs",i+" : "+startLat+","+startLng);
 					}else if(i == (upto-1)){
 						endLat = lat;
 						endLng = lng;
-						Log.e("end lats lngs",i+" : "+endLat+","+endLng);
 					}
 					
 					if((""+lat).length() > 6 && (""+lng).length() > 6){

@@ -91,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@+id/uppper_name_container"
+            android:background="@color/lightest_grey"
             android:weightSum="90" >
 
             <LinearLayout
@@ -371,8 +372,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="0.3dp"
             android:layout_below="@+id/custom_tabs"
+            android:background="@color/light_grey_text_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_below="@+id/custom_tabs"
+            android:layout_marginTop="1dp"
             android:background="@color/light_grey_text_color" />
 
         <RelativeLayout
@@ -383,6 +391,41 @@
                 android:id="@+id/wall_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/list_grid_container_back"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/list_btn_wall"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/list_btn_selected" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gird_list_container_border" />
+
+                    <ImageView
+                        android:id="@+id/grid_btn_wall"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/grid_btn_unselected" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -400,6 +443,41 @@
                 android:layout_height="match_parent"
                 android:visibility="gone" >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/list_grid_container_back"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/list_btn_photos"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/list_btn_selected" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gird_list_container_border" />
+
+                    <ImageView
+                        android:id="@+id/grid_btn_photos"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/grid_btn_unselected" />
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -415,6 +493,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/list_grid_container_back"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/list_btn_me"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/list_btn_selected" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gird_list_container_border" />
+
+                    <ImageView
+                        android:id="@+id/grid_btn_me"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/grid_btn_unselected" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -432,6 +545,41 @@
                 android:layout_height="match_parent"
                 android:visibility="gone" >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/list_grid_container_back"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/list_btn_together"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/list_btn_selected" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gird_list_container_border" />
+
+                    <ImageView
+                        android:id="@+id/grid_btn_together"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/grid_btn_unselected" />
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -447,6 +595,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/list_grid_container_back"
+                    android:weightSum="100" >
+
+                    <ImageView
+                        android:id="@+id/list_btn_workout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/list_btn_selected" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@color/gird_list_container_border" />
+
+                    <ImageView
+                        android:id="@+id/grid_btn_workout"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="49.5"
+                        android:src="@drawable/grid_btn_unselected" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"

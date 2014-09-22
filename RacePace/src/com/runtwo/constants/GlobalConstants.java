@@ -101,7 +101,7 @@ public class GlobalConstants {
 	public static final String DASHBOARD_ADDRESS = "address";
 	//===========================
 	
-	//GET FOLLOWERS FEED=========
+	//GET FOLLOWERS FEED=========									
 	public static final String GET_FOLLOWER_FEED_URL = COMMON_URL+"friend/getFollowersFeed/format/json";
 	public static final String FEED_DATE = "feed_date";
 	public static final String FEED_ID = "feed_id";

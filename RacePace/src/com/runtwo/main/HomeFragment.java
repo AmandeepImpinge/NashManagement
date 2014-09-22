@@ -35,10 +35,6 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 	LinearLayout moreNewsBtn;
 	ListView mNewsList;
 	
-	/*String [] newsArr = {"The content Related to news feed will be displayed here in this pannel.","There are total 5911 people running in the race.",
-						 "The content Related to news feed will be displayed here in this pannel.","There are total 5911 people running in the race.",
-						 "The content Related to news feed will be displayed here in this pannel.","There are total 5911 people running in the race.",
-						 "The content Related to news feed will be displayed here in this pannel.","There are total 5911 people running in the race."};*/ 
 	LayoutInflater inflater;
 	LinearLayout follower_btn,following_btn,groups_btn;
 	FragmentTransaction ft;
@@ -55,7 +51,6 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 		super.onCreateView(inflater, container, savedInstanceState);
  		container = (LinearLayout)inflater.inflate(R.layout.news_feed_frag_lay,null);
 		
- 		
  		container.findViewById(R.id.menu_icon).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MainTabActivity.menu.showMenu();
@@ -72,7 +67,7 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 		
  		handleClicks();
  		
-		ft = getFragmentManager().beginTransaction();
+		ft = getFragmentManager().beginTransaction();				
 		
 		mNewsList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -123,7 +118,6 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 				
 			}
 		});
-		
 	}
 	
 	class NewsListAdapter extends BaseAdapter{
@@ -195,7 +189,7 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 		if(keyCode == KeyEvent.KEYCODE_BACK){
 			Log.e("back","pressed");
 			if(MainTabActivity.menu.isMenuShowing()){
-				Log.e("menu","showing");
+				Log.e("menu","was showing");
 				MainTabActivity.menu.showContent();
 			}
 			return true;

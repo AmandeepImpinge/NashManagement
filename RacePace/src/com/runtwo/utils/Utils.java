@@ -1,18 +1,29 @@
 package com.runtwo.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.runtwo.main.Globals;
-
 import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.Shader.TileMode;
 import android.location.Location;
-import android.util.FloatMath;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
+
+import com.runtwo.main.Globals;
 
 public class Utils {
 
@@ -196,4 +207,117 @@ public class Utils {
 		return speed;  // result is in the units of meter/sec
 	}
 
+	
+	public static String getRealPathFromURI(Context context, Uri contentUri) {
+	    Cursor cursor = null;
+	    try {
+
+	        if("content".equals(contentUri.getScheme())) {
+	            String[] proj = {MediaStore.Images.Media.DATA};
+	            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
+	            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+	            cursor.moveToFirst();
+	            return cursor.getString(column_index);
+	        }
+	        else{
+	            return contentUri.getPath();
+	        }
+
+
+	    } finally {
+	        if (cursor != null) {
+	            cursor.close();
+	        }
+	    }
+	}    
+	
+	private static String imageName = null;
+	private static String currentFileName = null;
+
+	public static Uri getImageUri() {
+		File file = null;
+		if (imageName != null) {
+			file = new File(imageName);
+			if (file.exists()) {
+				file.delete();
+				imageName = "";
+			}
+		}
+		
+		currentFileName = ImageFileManipulation.getFileName() + ".jpeg";
+		//imageName = ImageFileManipulation.EXTERNAL_MEMORY + currentFileName;
+		imageName = Environment.getExternalStorageDirectory().toString() + currentFileName;
+		file = new File(imageName);
+		Uri imgUri = Uri.fromFile(file);
+		System.out.println("Image uri" + imgUri);
+		return imgUri;
+	}
+
+	
+	public static Bitmap getCircularBitmapWithWhiteBorder(Bitmap bitmap,
+			int borderWidth) {
+		if (bitmap == null || bitmap.isRecycled()) {
+			return null;
+		}
+
+		final int width = bitmap.getWidth() + borderWidth;
+		final int height = bitmap.getHeight() + borderWidth;
+
+		Bitmap canvasBitmap = Bitmap.createBitmap(width, height,
+				Bitmap.Config.ARGB_8888);
+		BitmapShader shader = new BitmapShader(bitmap, TileMode.CLAMP,
+				TileMode.CLAMP);
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setShader(shader);
+
+		Canvas canvas = new Canvas(canvasBitmap);
+		float radius = width > height ? ((float) height) / 2f
+				: ((float) width) / 2f;
+		canvas.drawCircle(width / 2, height / 2, radius, paint);
+		paint.setShader(null);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setColor(Color.WHITE);
+		paint.setStrokeWidth(borderWidth);
+		canvas.drawCircle(width / 2, height / 2, radius - borderWidth / 2,
+				paint);
+		return canvasBitmap;
+	}
+
+	
+	
+	public static Bitmap createRoundImage(Bitmap loadedImage) {
+		System.out.println("loadbitmap" + loadedImage);
+		final int width = loadedImage.getWidth();
+		final int height = loadedImage.getHeight();
+		
+		loadedImage = Bitmap.createScaledBitmap(loadedImage, width, height, true);
+		Bitmap circleBitmap = Bitmap.createBitmap(loadedImage.getWidth(),
+				loadedImage.getHeight(), Bitmap.Config.ARGB_8888);
+		BitmapShader shader = new BitmapShader(loadedImage,
+				Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setShader(shader);
+
+		Canvas c = new Canvas(circleBitmap);
+		c.drawCircle(loadedImage.getWidth() / 2, loadedImage.getHeight() / 2,
+				loadedImage.getWidth() / 2, paint);
+		return circleBitmap;
+	}
+	
+	public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+	        boolean filter) {
+	    float ratio = Math.min(
+	            (float) maxImageSize / realImage.getWidth(),
+	            (float) maxImageSize / realImage.getHeight());
+	    int width = Math.round((float) ratio * realImage.getWidth());
+	    int height = Math.round((float) ratio * realImage.getHeight());
+	
+	    Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+	            height, filter);
+	    return newBitmap;
+	}
+
+	
 }
