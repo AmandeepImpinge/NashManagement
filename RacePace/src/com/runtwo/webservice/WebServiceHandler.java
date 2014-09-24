@@ -1,35 +1,26 @@
 package com.runtwo.webservice;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
 
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.runtwo.constants.GlobalConstants;
 import com.runtwo.main.Globals;
 import com.runtwo.utils.Utils;
-
-import android.content.Context;
-import android.util.Log;
 
 public class WebServiceHandler {
 	
@@ -696,7 +687,8 @@ public class WebServiceHandler {
 		Globals global = (Globals)c.getApplicationContext();
 		String result ="error";
 		
- 		try {
+ 		try {	
+ 			
 			JSONObject obj = new JSONObject();
 			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
 			obj.put(GlobalConstants.ADD_FOLLOWERS_FRIEND_ID,friendId);
@@ -740,4 +732,56 @@ public class WebServiceHandler {
 		return result;
 	}
 	//==============================
+	
+	
+	//GET ACHIEVEMENTS====================================
+	public static String getAchievementService(Context c,String achid){
+		Globals global = (Globals)c.getApplicationContext();
+		String result ="error";
+		
+		try {
+			JSONObject obj = new JSONObject();
+			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
+			obj.put(GlobalConstants.GET_ACHIEVEMENT_ID,achid);
+			
+			HttpClient client = new DefaultHttpClient();
+            HttpResponse response;
+            
+            try {
+                HttpPost post = new HttpPost(GlobalConstants.GET_ACHIEVEMENT_URL);
+                List<NameValuePair> list = new ArrayList<NameValuePair>(1);
+                list.add(new BasicNameValuePair("JsonObject",obj.toString()));
+                post.setEntity(new UrlEncodedFormEntity(list,"UTF-8"));
+                response = client.execute(post);
+                
+                if(response!=null){
+                	result = EntityUtils.toString(response.getEntity());//Get the data in the entity
+                	Log.e("Result is",""+result);
+                }
+                
+                if(result.length() > 0){
+                	JSONObject job = new JSONObject(result); 
+                	
+                	String code = ""+job.getString(GlobalConstants.CODE);
+                	if(code.equals("0")){
+                		result = "false";
+                		global.setMessageOfResponse(job.getString(GlobalConstants.MESSAGE));
+                	}else if(code.equals("1")){
+                		JSONArray dataar = job.getJSONArray(GlobalConstants.DATA);
+                		//result = ServiceResponseParser.searchFriendsParser(global, dataar);
+                	}
+                }else{
+                	result = "error";
+                }
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//==============================
+	
 }

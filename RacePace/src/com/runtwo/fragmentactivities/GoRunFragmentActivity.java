@@ -18,8 +18,10 @@ import com.runtwo.utils.Utils;
 
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.content.res.Resources;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,7 +46,7 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	View mediaBottomDiv, mapBottomDiv;
 	RelativeLayout mediaTab, mapTab, mediaContainer, mapContainer;
 	ImageView musicBtn;
-	TextView startBtn,resumeBtn,stopBtn;
+	TextView goRun,startBtn,resumeBtn,stopBtn;
 	LinearLayout slideBtn,resumeStopContainer;
 	boolean firstTime = false;
 	final int MEDIA_TAB_CHANGE = 111;
@@ -118,14 +120,14 @@ public class GoRunFragmentActivity extends FragmentActivity{
 				public void onMyLocationChange(Location loc) {
 					loclat = loc.getLatitude();
 					loclng = loc.getLongitude();
-					if(firstTime){
+					/*if(firstTime){
 						firstTime = false;
 						try {
 							mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loclat, loclng),17));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-					}
+					}*/
 					
 					//For Calculating Pace
 					//if(loc.hasSpeed()){
@@ -261,6 +263,7 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		paceText = (TextView)findViewById(R.id.curr_pace);
 		caloriesText = (TextView)findViewById(R.id.calories);
 		
+		goRun = (TextView)findViewById(R.id.gorun_btn);
 		startBtn = (TextView)findViewById(R.id.start_btn);
 		resumeBtn = (TextView)findViewById(R.id.resume_btn);
 		stopBtn = (TextView)findViewById(R.id.stop_btn);
@@ -303,6 +306,12 @@ public class GoRunFragmentActivity extends FragmentActivity{
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(GoRunFragmentActivity.this,MusicTypeActivity.class));
+			}
+		});
+		
+		goRun.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				handleGoRunClick();
 			}
 		});
 		
@@ -463,10 +472,24 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	}
 	//==============================
 	
+	private void handleGoRunClick(){
+		if(loclat != 0 && loclng != 0){
+			try {
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loclat, loclng),17));
+				//make start btn visible
+				handleVisibilityOfButtons(1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+			Toast.makeText(GoRunFragmentActivity.this,"Unable to find your Location,Try again.",Toast.LENGTH_SHORT).show();
+		}
+	}
 	
 	private void handleStartClick(){
 		//make slide btn visible
 		handleVisibilityOfButtons(2);
+		playStartSound();
 		startMyTimer();
 	}
 	
@@ -479,23 +502,52 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	private void handleStopClick(){
 		//take user to final screens
 		stopMyTimer();
-		handleVisibilityOfButtons(1);
+		//make GoRun visible
+		handleVisibilityOfButtons(0);
 		startActivity(new Intent(this,AddPictureActivity.class));
 	}
 	
+	private void playStartSound() {
+		//start btn sound
+		try {
+			final MediaPlayer mp = new MediaPlayer();
+	        if(mp.isPlaying())
+	        {  
+	            mp.stop();
+	            mp.reset();
+	        } 
+            AssetFileDescriptor afd;
+            afd = getAssets().openFd("start_workout.mp3");
+            mp.setDataSource(afd.getFileDescriptor(),afd.getStartOffset(),afd.getLength());
+            mp.prepare();
+            mp.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void handleVisibilityOfButtons(int which){
+		//which == 0 > GoRun cisible all else gone  
 		//which == 1 > start visible all else gone
 		//which == 2 > slide visible all else gone		
 		//which == 3 > resume stop visible all else gone
-		if(which == 1){
+		if(which == 0){
+			goRun.setVisibility(View.VISIBLE);
+			startBtn.setVisibility(View.GONE);
+			slideBtn.setVisibility(View.GONE);
+			resumeStopContainer.setVisibility(View.GONE);
+		}else if(which == 1){
+			goRun.setVisibility(View.GONE);
 			startBtn.setVisibility(View.VISIBLE);
 			slideBtn.setVisibility(View.GONE);
 			resumeStopContainer.setVisibility(View.GONE);
 		}else if(which == 2){
+			goRun.setVisibility(View.GONE);
 			startBtn.setVisibility(View.GONE);
 			slideBtn.setVisibility(View.VISIBLE);
 			resumeStopContainer.setVisibility(View.GONE);
 		}else if(which == 3){
+			goRun.setVisibility(View.GONE);
 			startBtn.setVisibility(View.GONE);
 			slideBtn.setVisibility(View.GONE);
 			resumeStopContainer.setVisibility(View.VISIBLE);
@@ -504,7 +556,6 @@ public class GoRunFragmentActivity extends FragmentActivity{
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		/*System.out.println("Pause");
 		GoRunFragment.map_container.setVisibility(View.GONE);*/
@@ -515,7 +566,6 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		/*System.out.println("Resume");
 		GoRunFragment.map_container.setVisibility(View.VISIBLE);*/
@@ -528,6 +578,7 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		try {
 			if(myTimer != null){
 				myTimer.cancel();
+				myTimer = null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

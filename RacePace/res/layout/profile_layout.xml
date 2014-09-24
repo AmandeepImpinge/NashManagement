@@ -390,7 +390,9 @@
             <LinearLayout
                 android:id="@+id/wall_lay"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -441,6 +443,7 @@
                 android:id="@+id/photos_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone" >
 
                 <LinearLayout
@@ -492,7 +495,8 @@
                 android:id="@+id/me_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" >
+                android:orientation="vertical"
+                android:visibility="visible" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -529,20 +533,29 @@
                         android:src="@drawable/grid_btn_unselected" />
                 </LinearLayout>
 
-                <TextView
+                <com.runtwo.utils.CustomScrollView
+                    android:id="@+id/me_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Me"
-                    android:textColor="@color/light_grey_text_color"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:layout_marginTop="6dp" >
+
+                    <LinearLayout
+                        android:id="@+id/achievement_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+                   	
+                    </LinearLayout>
+                </com.runtwo.utils.CustomScrollView>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/together_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone" >
 
                 <LinearLayout
@@ -594,6 +607,7 @@
                 android:id="@+id/workout_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:visibility="gone" >
 
                 <LinearLayout

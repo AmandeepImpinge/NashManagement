@@ -56,6 +56,8 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	//===
 	
 	int CurrentCustomTab = 1;
+	LinearLayout achievementContainer;
+	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -88,6 +90,9 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		
 		ft = getFragmentManager().beginTransaction();
 		
+		addAchievements();
+		
+		new CallService().execute("");
 		
 		container.setOnKeyListener(this);
 		return container; 
@@ -107,7 +112,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
  		
 		imageContainer = (RelativeLayout)container.findViewById(R.id.img_container);
 		
-		//custom tabs
+		//custom tabs===
 		wallBtn = (LinearLayout)container.findViewById(R.id.wall_btn);
 		photosBtn = (LinearLayout)container.findViewById(R.id.photos_btn);
 		meBtn = (LinearLayout)container.findViewById(R.id.me_btn);
@@ -125,7 +130,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		meImg = (ImageView)container.findViewById(R.id.cus_tab_img3);
 		togetherImg = (ImageView)container.findViewById(R.id.cus_tab_img4);
 		workoutImg = (ImageView)container.findViewById(R.id.cus_tab_img5);
-		//==========
+		//===============
 		
 		//containers=====
 		wallLay = (LinearLayout)container.findViewById(R.id.wall_lay);
@@ -148,6 +153,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		gridBtnWorkout = (ImageView)container.findViewById(R.id.grid_btn_workout);
 		//==============
 		
+		achievementContainer = (LinearLayout)container.findViewById(R.id.achievement_container);
 	}
 
 	private void handleClicks(){
@@ -193,6 +199,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
+		
 		photosBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 2){
@@ -201,6 +208,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
+		
 		meBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 3){
@@ -209,6 +217,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
+		
 		togetherBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 4){
@@ -217,6 +226,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
+		
 		workoutBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 5){
@@ -232,6 +242,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				gridBtnWall.setImageResource(R.drawable.grid_btn_unselected);
 			}
 		});
+		
 		gridBtnWall.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				listBtnWall.setImageResource(R.drawable.list_btn_unselected);
@@ -337,6 +348,18 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		}
 	}
 	
+	public void addAchievements(){
+		int upto = 5;
+		for(int i=0;i<upto;i++){
+			try {
+				RelativeLayout lays = (RelativeLayout) inflater.inflate(R.layout.achievement_list_item,null);
+				achievementContainer.addView(lays);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	@Override
 	public boolean onKey(View v, int keyCode, KeyEvent event) {
 		Log.e("key","pressed");
@@ -364,7 +387,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		protected String doInBackground(String... params) {
 			String result = "true";
 			try {
-				//result = WebServiceHandler.getFollowerFeedService(getActivity());
+				result = WebServiceHandler.getAchievementService(getActivity(),"");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -385,5 +408,40 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			}
 		}
 	}
+
+	//ACHIEVEMENT CRITERIA IPHONE========
 	
+	/*if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Plaque"])
+    {
+        [awardType_1_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Large Gold Plate like Wimbledon"])
+    {
+        [awardType_2_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Medal"])
+    {
+        [awardType_3_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Ribbon"])
+    {
+        [awardType_4_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Trophy"])
+    {
+        [awardType_5_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Belt Buckle"])
+    {
+        [awardType_6_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Plate"])
+    {
+        [awardType_7_Array addObject:[achievementArray objectAtIndex:i]];
+    }
+    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Cup"])
+    {
+        [awardType_8_Array addObject:[achievementArray objectAtIndex:i]];
+    }*/
+	//===========================================
 }

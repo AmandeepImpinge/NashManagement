@@ -164,4 +164,24 @@ public class GlobalConstants {
 	public static final String ADD_FOLLOWERS_IS_FOLLOWER = "is_follower";
 	//==============================
 	
+	/*{"data":[{"achievement_id":"194","milestone":"MOST MILES IN A ONE YEAR TIME FRAME - MEN ","coins":"5000",
+	 * "award":"Golden Shoe Trophy",
+		"color":"Gold","award_type":"Trophy","achievement_detail":"Large","age_desc":"Men Age 35 - 39","gender":"male",
+		"user_id":"1"}],
+		
+		"totalCnt":20
+		,"code":1,"message":"success"}*/
+	//GET ACHIEVEMENTS==============
+	public static final String GET_ACHIEVEMENT_URL = COMMON_URL+"api/Challenge/getUsersAchievements/format/json";
+	public static final String GET_ACHIEVEMENT_ID = "achievement_id";
+	public static final String GET_ACHIEVEMENT_MILESTONE = "milestone";
+	public static final String GET_ACHIEVEMENT_COINS = "coins";
+	public static final String GET_ACHIEVEMENT_AWARD = "award";
+	public static final String GET_ACHIEVEMENT_COLOR = "color";
+	public static final String GET_ACHIEVEMENT_AWARD_TYPE = "award_type";
+	public static final String GET_ACHIEVEMENT_ACHEIEVEMENT_DETAIL = "achievement_detail";
+	public static final String GET_ACHIEVEMENT_AGE_DESC = "age_desc";
+	public static final String GET_ACHIEVEMENT_TOTAL_COUNT = "totalCnt";
+	//==============================
+	
 }
