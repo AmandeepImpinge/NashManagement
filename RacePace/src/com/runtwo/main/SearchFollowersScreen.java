@@ -38,8 +38,7 @@ public class SearchFollowersScreen extends Fragment {
 			Bundle savedInstanceState) {
 		inflater = infl;
 
-		container = (LinearLayout) inflater.inflate(R.layout.search_followers,
-				null);
+		container = (LinearLayout) inflater.inflate(R.layout.search_followers,null);
 
 		ab = (ActionBarRun) container.findViewById(R.id.action_bar);
 		ab.findViewById(R.id.run_txt).setVisibility(View.INVISIBLE);
@@ -60,12 +59,10 @@ public class SearchFollowersScreen extends Fragment {
 				return false;
 			}
 		});
-
 		return container;
 	}
 
 	class SearchFollowers extends AsyncTask<String, Integer, String> {
-
 		ProgressDialog mProgressDialog = null;
 
 		@SuppressWarnings("static-access")
@@ -163,7 +160,6 @@ public class SearchFollowersScreen extends Fragment {
 			if (imgUrl.length() > 0) {
 				// Load Image Here
 			}
-
 			if (position == 0) {
 				convertView.setBackgroundColor(getResources().getColor(
 						R.color.search_edit_back));
@@ -173,7 +169,6 @@ public class SearchFollowersScreen extends Fragment {
 			} else {
 				convertView.setBackgroundColor(Color.WHITE);
 			}
-
 			return convertView;
 		}
 	}
