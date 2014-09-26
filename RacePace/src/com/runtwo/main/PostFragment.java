@@ -127,7 +127,7 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 			}
 			break;
 		case R.id.cancel_txt:
-			try {
+			try {  
 				getFragmentManager().popBackStack();
 			} catch (Exception e) {
 				e.printStackTrace();

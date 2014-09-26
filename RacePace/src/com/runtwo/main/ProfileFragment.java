@@ -7,6 +7,7 @@ import com.runtwo.main.HomeFragment.NewsListAdapter;
 import com.runtwo.webservice.WebServiceHandler;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -184,10 +185,14 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		
 		imageContainer.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Fragment f = new ProfileSetupFirst();
+				
+				Intent iProfileSetup = new Intent(getActivity(), ProfileSetupFirst.class);
+				startActivity(iProfileSetup);
+				
+				/*Fragment f = new ProfileSetupFirst();
 				ft.replace(R.id.contentintab,f);
 				ft.addToBackStack("home");
-				ft.commit();
+				ft.commit();*/
 			}
 		});
 		

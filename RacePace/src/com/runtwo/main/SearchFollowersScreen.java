@@ -48,7 +48,7 @@ public class SearchFollowersScreen extends Fragment {
 		searchEdit = (EditText) container.findViewById(R.id.search_edit);
 		searchList = (ListView) container.findViewById(R.id.search_list);
 
-		searchEdit.setOnKeyListener(new OnKeyListener() {
+		searchEdit.setOnKeyListener(new OnKeyListener() {     
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
 				if (keyCode == KeyEvent.KEYCODE_ENTER) {
 					String searchtext = "" + searchEdit.getText().toString();

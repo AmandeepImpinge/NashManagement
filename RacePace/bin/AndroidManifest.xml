@@ -86,6 +86,11 @@
         <activity
             android:name="com.runtwo.main.MusicTypeActivity"
             android:screenOrientation="portrait" />
+        
+        <!-- Profile Edit Activity -->
+        <activity
+            android:name="com.runtwo.main.ProfileSetupFirst"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
