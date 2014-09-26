@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    android:orientation="horizontal" >
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/achievements_shelf"
+        />
+    
+    <HorizontalScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        >
+        
+        <LinearLayout 
+            android:id="@+id/horizontal_container"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            >
+            
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_trophy"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_medium_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_medal"
+                />
+            
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            <ImageView 
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/achievement_large_coin"
+                />
+            
+                
+        </LinearLayout>
+        
+        
+    </HorizontalScrollView>
+    
+</RelativeLayout>
