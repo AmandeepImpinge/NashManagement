@@ -411,37 +411,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 
 	//ACHIEVEMENT CRITERIA IPHONE========
 	
-	/*if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Plaque"])
-    {
-        [awardType_1_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Large Gold Plate like Wimbledon"])
-    {
-        [awardType_2_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Medal"])
-    {
-        [awardType_3_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Ribbon"])
-    {
-        [awardType_4_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Trophy"])
-    {
-        [awardType_5_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Belt Buckle"])
-    {
-        [awardType_6_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Plate"])
-    {
-        [awardType_7_Array addObject:[achievementArray objectAtIndex:i]];
-    }
-    else if([[[achievementArray objectAtIndex:i] valueForKey:@"award_type"] isEqualToString:@"Cup"])
-    {
-        [awardType_8_Array addObject:[achievementArray objectAtIndex:i]];
-    }*/
+
 	//===========================================
 }

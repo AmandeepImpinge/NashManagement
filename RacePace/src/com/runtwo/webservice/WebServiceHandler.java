@@ -756,7 +756,7 @@ public class WebServiceHandler {
                 
                 if(response!=null){
                 	result = EntityUtils.toString(response.getEntity());//Get the data in the entity
-                	Log.e("Result is",""+result);
+                	Log.v("Result is",""+result);
                 }
                 
                 if(result.length() > 0){
@@ -768,7 +768,7 @@ public class WebServiceHandler {
                 		global.setMessageOfResponse(job.getString(GlobalConstants.MESSAGE));
                 	}else if(code.equals("1")){
                 		JSONArray dataar = job.getJSONArray(GlobalConstants.DATA);
-                		//result = ServiceResponseParser.searchFriendsParser(global, dataar);
+                		result = ServiceResponseParser.achievementParser(global, dataar);
                 	}
                 }else{
                 	result = "error";

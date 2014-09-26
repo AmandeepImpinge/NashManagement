@@ -195,4 +195,15 @@ public class Globals extends Application{
 		this.distanceInMeters = distanceInMeters;
 	}
 	
+	
+	//HashMap for storing the data of the ACHIEVEMENTs==
+	HashMap<String,ArrayList<HashMap<String,String>>> achievementData = new HashMap<String, ArrayList<HashMap<String,String>>>();
+	public HashMap<String, ArrayList<HashMap<String, String>>> getAchievementData() {
+		return achievementData;
+	}
+	public void setAchievementData(
+			HashMap<String, ArrayList<HashMap<String, String>>> achievementData) {
+		this.achievementData = achievementData;
+	}
+	//===================================================
 }	
