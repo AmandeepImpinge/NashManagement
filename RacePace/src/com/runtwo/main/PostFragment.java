@@ -124,7 +124,7 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 				new PostOnRun().execute("");
 			}else{
 				Toast.makeText(getActivity(),"Enter some text to be shared.", Toast.LENGTH_SHORT).show();
-			}
+			}    
 			break;
 		case R.id.cancel_txt:
 			try {  
