@@ -54,6 +54,7 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 	String imageName = "";
 	Uri cameraImageUri;
 
+	///test Updating....
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
