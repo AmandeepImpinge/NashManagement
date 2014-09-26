@@ -9,23 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/topbar_blue_back_color" >
+        
+          <com.runtwo.customfonts.TextViewHelrWOne
+            android:id="@+id/cancel"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="Cancel"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"/>
 
         <com.runtwo.customfonts.TextViewHelrWOne
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Profile Setup"
+            android:text="Edit Profile"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <com.runtwo.customfonts.TextViewHelrWOne
+            android:id="@+id/save"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:text="Edit"
+            android:text="Save"
             android:textColor="@android:color/white"
-            android:textSize="13sp" />
+            android:textSize="13sp"   />
     </RelativeLayout>
 
     <ScrollView
@@ -280,6 +291,77 @@
                     android:textColor="@android:color/black"
                     android:textSize="13sp" />
             </LinearLayout>
+            
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/weight"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Weight"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/height"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Height"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>
+            
+               <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" 
+                android:layout_marginBottom="5dp">
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/tShirt_size"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="T-Shirt Size"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <com.runtwo.customfonts.EditTextHelveticaLtZero
+                    android:id="@+id/shoe_size"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="50"
+                    android:background="@color/textbox_back"
+                    android:gravity="center_vertical"
+                    android:hint="Shoe Size"
+                    android:padding="5dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+            </LinearLayout>                           
         </LinearLayout>
     </ScrollView>
 
