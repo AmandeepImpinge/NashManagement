@@ -29,7 +29,6 @@ public class SearchFollowersScreen extends Fragment {
 	LayoutInflater inflater;
 	EditText searchEdit;
 	ListView searchList;
-	//ProgressDialog mProgressDialog = null;
 	Globals global;
 	ArrayList<HashMap<String, String>> followersArrayList = new ArrayList<HashMap<String, String>>();
 	ActionBarRun ab;
@@ -69,12 +68,10 @@ public class SearchFollowersScreen extends Fragment {
 
 		ProgressDialog mProgressDialog = null;
 
+		@SuppressWarnings("static-access")
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			/*mProgressDialog = new ProgressDialog(getActivity());
-			mProgressDialog.setMessage("Searching...");
-			mProgressDialog.show();*/
 			mProgressDialog = new ProgressDialog(getActivity()).show(getActivity(),"","Loading...");
 		}
 
