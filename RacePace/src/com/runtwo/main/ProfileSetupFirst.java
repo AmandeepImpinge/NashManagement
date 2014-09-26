@@ -231,7 +231,7 @@ public class ProfileSetupFirst extends Activity implements OnClickListener /*Fra
 
 		case R.id.cancel:
 			finish();
-			break;
+			break;    
 
 		case R.id.save:
 			//saveProfile();
