@@ -869,4 +869,74 @@ public class WebServiceHandler {
 		return result;
 	}
 
+	//ADD RACE DETAILS SERVICE====================================
+	public static String addRaceDetailsService(Context c,String chl_id,String travel_path,String dist,String raceid,
+											   String chal_goal,String traveldist,String calories,String dur,
+											   String message,String profileimg,String imgname,String currentpace){
+		Globals global = (Globals)c.getApplicationContext();
+		String result ="error";
+
+		/*{"access_token":"QG67GGPU1RQS6VFO1O4B","challenge_id":"1","travel_path":"","distance":"500","race_id":"1",
+			"challenge_goal":"1000",”travel_distance”:”500”}*/
+		//calories,duration,message,profile_img,img_name,current_pace
+
+
+		try {
+			JSONObject obj = new JSONObject();
+
+			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
+			obj.put(GlobalConstants.ADD_RACEDET_CHALLENGE_ID,chl_id);
+			obj.put(GlobalConstants.ADD_RACEDET_TRAVEL_PATH,travel_path);
+			obj.put(GlobalConstants.ADD_RACEDET_DISTANCE,dist);
+			obj.put(GlobalConstants.ADD_RACEDET_RACE_ID,raceid);
+			obj.put(GlobalConstants.ADD_RACEDET_CHALLENGE_GOAL,chal_goal);
+			obj.put(GlobalConstants.ADD_RACEDET_TRAVEL_DISTANCE,traveldist);
+			obj.put(GlobalConstants.ADD_RACEDET_CALORIES,calories);
+			obj.put(GlobalConstants.ADD_RACEDET_DURATION,dur);
+			obj.put(GlobalConstants.ADD_RACEDET_MESSAGE,message);
+			obj.put(GlobalConstants.ADD_RACEDET_PROFILE_IMG,profileimg);
+			obj.put(GlobalConstants.ADD_RACEDET_IMG_NAME,imgname);
+			obj.put(GlobalConstants.ADD_RACEDET_CURRENT_PACE,currentpace);
+			
+			HttpClient client = new DefaultHttpClient();
+			HttpResponse response;
+
+			try {
+				HttpPost post = new HttpPost(GlobalConstants.ADD_RACEDET_URL);
+				List<NameValuePair> list = new ArrayList<NameValuePair>(1);
+				list.add(new BasicNameValuePair("JsonObject",obj.toString()));
+				post.setEntity(new UrlEncodedFormEntity(list,"UTF-8"));
+				response = client.execute(post);
+
+				if(response!=null){
+					result = EntityUtils.toString(response.getEntity());
+					Log.e("Result is",""+result);
+				}
+
+				if(result.length() > 0){
+					JSONObject job = new JSONObject(result); 
+
+					String code = ""+job.getString(GlobalConstants.CODE);
+					if(code.equals("0")){
+						result = "false";
+						global.setMessageOfResponse(job.getString(GlobalConstants.MESSAGE));
+					}else if(code.equals("1")){
+						result = "true";
+						
+					}
+				}else{
+					result = "error";
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	//==============================
+
+	
 }

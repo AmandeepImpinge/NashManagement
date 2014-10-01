@@ -117,7 +117,7 @@ public class ProfileSetupFirst extends Activity implements OnClickListener /*Fra
 			}
 
 			String dob = userDetails.get(GlobalConstants.DOB);			
-			if(dob != null) {
+			if(dob != null && !dob.contains("0000")) {
 				Log.v("dob", dob);
 				eDOB.setText(dob);
 			}

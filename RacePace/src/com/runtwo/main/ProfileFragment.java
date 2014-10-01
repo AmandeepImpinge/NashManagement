@@ -1,5 +1,6 @@
 package com.runtwo.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.runtwo.constants.GlobalConstants;
@@ -91,7 +92,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		
 		ft = getFragmentManager().beginTransaction();
 		
-		addAchievements();
+		//addAchievements();
 		
 		new CallService().execute("");
 		
@@ -354,7 +355,37 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	}
 	
 	public void addAchievements(){
-		int upto = 5;
+		HashMap<String,ArrayList<HashMap<String,String>>> maps = global.getAchievementData();
+		
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_PLAQUE)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_PLAQUE,maps.get(GlobalConstants.ACHIEVEMENT_PLAQUE));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_LARGEGOLD_WIMB)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_LARGEGOLD_WIMB,maps.get(GlobalConstants.ACHIEVEMENT_LARGEGOLD_WIMB));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_MEDAL)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_MEDAL,maps.get(GlobalConstants.ACHIEVEMENT_MEDAL));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_RIBBON)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_RIBBON,maps.get(GlobalConstants.ACHIEVEMENT_RIBBON));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_TROPHY)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_TROPHY,maps.get(GlobalConstants.ACHIEVEMENT_TROPHY));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_BELT_BUCKLE)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_BELT_BUCKLE,maps.get(GlobalConstants.ACHIEVEMENT_BELT_BUCKLE));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_PLATE)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_PLATE,maps.get(GlobalConstants.ACHIEVEMENT_PLATE));
+		}
+		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_CUP)){
+			addAchievementToUI(GlobalConstants.ACHIEVEMENT_CUP,maps.get(GlobalConstants.ACHIEVEMENT_CUP));
+		}
+		
+	}
+	
+	public void addAchievementToUI(String key,ArrayList<HashMap<String,String>> list){
+		/*int upto = 5;
 		for(int i=0;i<upto;i++){
 			try {
 				RelativeLayout lays = (RelativeLayout) inflater.inflate(R.layout.achievement_list_item,null);
@@ -362,7 +393,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 	
 	@Override
@@ -405,7 +436,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			mProgressDialog.dismiss();
 			
 			if(result.equalsIgnoreCase("true")){
-				
+				addAchievements();
 			}else if(result.equalsIgnoreCase("false")){
 				Toast.makeText(getActivity(),""+global.getMessageOfResponse(),Toast.LENGTH_SHORT).show();
 			}else{
@@ -413,9 +444,5 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			}
 		}
 	}
-
-	//ACHIEVEMENT CRITERIA IPHONE========
 	
-
-	//===========================================
 }

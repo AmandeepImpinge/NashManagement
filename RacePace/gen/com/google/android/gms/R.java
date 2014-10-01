@@ -99,8 +99,8 @@ public final class R {
 		public static final int ic_plusone_small_off_client = 0x7f020092;
 		public static final int ic_plusone_standard_off_client = 0x7f020093;
 		public static final int ic_plusone_tall_off_client = 0x7f020094;
-		public static final int powered_by_google_dark = 0x7f0200ba;
-		public static final int powered_by_google_light = 0x7f0200bb;
+		public static final int powered_by_google_dark = 0x7f0200bd;
+		public static final int powered_by_google_light = 0x7f0200be;
 	}
 	public static final class id {
 		public static final int book_now = 0x7f05002d;

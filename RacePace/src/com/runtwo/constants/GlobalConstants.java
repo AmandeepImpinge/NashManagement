@@ -197,6 +197,25 @@ public class GlobalConstants {
 	public static final String ACHIEVEMENT_PLATE = "Plate";
 	public static final String ACHIEVEMENT_CUP = "Cup";
 	//==============================
-		//==============================
+	
+	//ADD RACE DETAILS==============
+	
+	/*{"access_token":"QG67GGPU1RQS6VFO1O4B","challenge_id":"1","travel_path":"","distance":"500","race_id":"1",
+	"challenge_goal":"1000",”travel_distance”:”500”}*/
+	//calories,duration,message,profile_img,img_name,current_pace
+	public static final String ADD_RACEDET_URL = "Challenge/addRaceDetails/format/json";
+	public static final String ADD_RACEDET_CHALLENGE_ID = "challenge_id";
+	public static final String ADD_RACEDET_TRAVEL_PATH = "travel_path";
+	public static final String ADD_RACEDET_DISTANCE = "distance";
+	public static final String ADD_RACEDET_RACE_ID = "race_id";
+	public static final String ADD_RACEDET_CHALLENGE_GOAL = "challenge_goal";
+	public static final String ADD_RACEDET_TRAVEL_DISTANCE = "travel_distance";
+	public static final String ADD_RACEDET_CALORIES = "calories";
+	public static final String ADD_RACEDET_DURATION = "duration";
+	public static final String ADD_RACEDET_MESSAGE = "message";
+	public static final String ADD_RACEDET_PROFILE_IMG = "profile_img";
+	public static final String ADD_RACEDET_IMG_NAME = "img_name";
+	public static final String ADD_RACEDET_CURRENT_PACE = "current_pace";
+	//==============================
 
 }

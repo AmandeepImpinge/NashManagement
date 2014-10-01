@@ -1,5 +1,7 @@
 package com.runtwo.fragmentactivities;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -7,7 +9,13 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import com.runtwo.constants.GlobalConstants;
 import com.runtwo.main.AddPictureActivity;
@@ -24,6 +32,7 @@ import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -78,7 +87,15 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	float currentSpeed = 0.0f;
 	float oldCalories = 0;
 	long oldHitTime = 0;
-	
+
+	//For route and Markers on the map along the path of running
+	ArrayList<LatLng> locCoodList = new ArrayList<LatLng>();
+	PolylineOptions routeOptions;
+	Polyline trackPolyline;
+	Marker startMarker;
+	ArrayList<Integer> markerPositions = new ArrayList<Integer>();
+	ArrayList<Marker> mapMarkers = new ArrayList<Marker>();
+	//=========================
 	
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -99,6 +116,10 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		
 		res = getResources();
 		ft = getSupportFragmentManager().beginTransaction();
+		
+		routeOptions = new PolylineOptions();
+		routeOptions.color(getResources().getColor(R.color.topbar_blue_back_color));
+		routeOptions.width(3);
 		
 		//for use in map 
 		firstTime = true;
@@ -144,15 +165,12 @@ public class GoRunFragmentActivity extends FragmentActivity{
 					}*/
 					
 					//To calculate the Distance====
-					//if not paused or stoped Running
+					//if not paused or stopped Running
 					if(running){
 						//if it is not the first Location
-						Log.e("running","true");
 						if(oldLat != 0){
-							Log.e("old","not empty");
 							//if the older calculation request is still in progress
 							if(!working){
-								Log.e("not","working");
 								//if in case hitseconds are zero
 								if(hitSeconds > 0){
 									Log.e("hit seconds","greater");
@@ -165,6 +183,11 @@ public class GoRunFragmentActivity extends FragmentActivity{
 								}else{
 									hitSeconds = seconds;
 								}
+								
+								LatLng ltln = new LatLng(loclat, loclng);
+								locCoodList.add(ltln);
+								updateMapRoute();
+								
 							}
 						}else{
 							oldLat = loclat;
@@ -181,6 +204,58 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		}
 	}
 
+	public void updateMapRoute(){
+		routeOptions.getPoints().clear();
+		routeOptions.addAll(locCoodList);
+		//remove if already added 
+		if(trackPolyline != null){
+			trackPolyline.remove();
+		}
+		
+		trackPolyline = mMap.addPolyline(routeOptions);
+		//for the start marker to show on map
+		if(startMarker == null){
+			updateMarkersOnMap();
+		}
+	}
+	
+	public void updateMarkersOnMap(){
+		if(startMarker == null && locCoodList.size() > 0){
+			startMarker = mMap.addMarker(new MarkerOptions().position(
+						  new LatLng(locCoodList.get(0).latitude,locCoodList.get(0).longitude))
+						  .icon(BitmapDescriptorFactory.fromResource(R.drawable.map_marker_green)));
+		}
+		
+		//remove the markers if any
+		if(mapMarkers.size() > 0){
+			for(int i=0;i<mapMarkers.size();i++){
+				mapMarkers.get(i).remove();
+			}
+			mapMarkers.clear();
+		}
+		//==========================
+		
+		int upto = markerPositions.size();
+		for(int i=0;i<upto;i++){
+			LatLng ltlg = locCoodList.get(markerPositions.get(i));
+			Marker mk;
+			if(i == (upto-1)){
+				if(!running){
+					mk = mMap.addMarker(new MarkerOptions().position(new LatLng(ltlg.latitude,ltlg.longitude))
+								.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_marker_red)));	
+				}else{
+					mk = mMap.addMarker(new MarkerOptions().position(new LatLng(ltlg.latitude,ltlg.longitude))
+							.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_marker_green)));
+				}
+			}else{
+				mk = mMap.addMarker(new MarkerOptions().position(new LatLng(ltlg.latitude,ltlg.longitude))
+						.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_marker_green)));
+			}
+			mapMarkers.add(mk);
+		}
+	}
+	
+	
 	class getDistanceUpdated extends AsyncTask<String,Integer,String>{
 		float distance = 0;
 		float calories = 0;
@@ -317,7 +392,7 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		
 		startBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				handleStartClick();
+				//handleStartClick();
 			}
 		});
 
@@ -442,6 +517,10 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	
 	public void pauseMyTimer(){
 		running = false;
+		if(locCoodList.size() > 0){
+			markerPositions.add(locCoodList.size()-1);
+		}
+		updateMarkersOnMap();
 		myTimer.cancel();
 	}
 	
@@ -477,17 +556,31 @@ public class GoRunFragmentActivity extends FragmentActivity{
 			try {
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(loclat, loclng),17));
 				//make start btn visible
-				handleVisibilityOfButtons(1);
+				//handleVisibilityOfButtons(1);
+				goRun.setVisibility(View.GONE);
+				handleStartDelay.postDelayed(null,1500);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else{
-			Toast.makeText(GoRunFragmentActivity.this,"Unable to find your Location,Try again.",Toast.LENGTH_SHORT).show();
+			Toast.makeText(GoRunFragmentActivity.this,"Unable to find your Location,check GPS and Internet connection.",Toast.LENGTH_SHORT).show();
 		}
 	}
 	
-	private void handleStartClick(){
+	/*private void handleStartClick(){
 		//make slide btn visible
+		handleVisibilityOfButtons(2);
+		playStartSound();
+		startMyTimer();
+	}*/
+	
+	Handler handleStartDelay = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			handleStart();
+		}
+	};
+	
+	public void handleStart(){
 		handleVisibilityOfButtons(2);
 		playStartSound();
 		startMyTimer();
@@ -496,15 +589,37 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	private void handleResumeClick(){
 		//make slide btn visible
 		handleVisibilityOfButtons(2);
+		updateMarkersOnMap();
 		startMyTimer();
 	}
 	
 	private void handleStopClick(){
 		//take user to final screens
 		stopMyTimer();
+		
+		//remove route and markers....
+		if(startMarker != null){
+			startMarker.remove();
+		}
+		for(int i=0;i<mapMarkers.size();i++){
+			mapMarkers.get(i).remove();
+		}
+		
+		if(trackPolyline != null){
+			trackPolyline.remove();
+		}
+		
+		locCoodList.clear();
+		routeOptions = new PolylineOptions();
+		trackPolyline = null;
+		startMarker = null;
+		markerPositions.clear();
+		mapMarkers.clear();
 		//make GoRun visible
 		handleVisibilityOfButtons(0);
-		startActivity(new Intent(this,AddPictureActivity.class));
+		
+		Intent i = new Intent(this,AddPictureActivity.class);
+		startActivity(i);
 	}
 	
 	private void playStartSound() {
@@ -527,29 +642,24 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	}
 	
 	private void handleVisibilityOfButtons(int which){
-		//which == 0 > GoRun cisible all else gone  
+		//which == 0 > GoRun visible all else gone  
 		//which == 1 > start visible all else gone
 		//which == 2 > slide visible all else gone		
 		//which == 3 > resume stop visible all else gone
+		
+		//At first hide all and make only required one visible
+		goRun.setVisibility(View.GONE);
+		startBtn.setVisibility(View.GONE);
+		slideBtn.setVisibility(View.GONE);
+		resumeStopContainer.setVisibility(View.GONE);
+		
 		if(which == 0){
 			goRun.setVisibility(View.VISIBLE);
-			startBtn.setVisibility(View.GONE);
-			slideBtn.setVisibility(View.GONE);
-			resumeStopContainer.setVisibility(View.GONE);
 		}else if(which == 1){
-			goRun.setVisibility(View.GONE);
 			startBtn.setVisibility(View.VISIBLE);
-			slideBtn.setVisibility(View.GONE);
-			resumeStopContainer.setVisibility(View.GONE);
 		}else if(which == 2){
-			goRun.setVisibility(View.GONE);
-			startBtn.setVisibility(View.GONE);
 			slideBtn.setVisibility(View.VISIBLE);
-			resumeStopContainer.setVisibility(View.GONE);
 		}else if(which == 3){
-			goRun.setVisibility(View.GONE);
-			startBtn.setVisibility(View.GONE);
-			slideBtn.setVisibility(View.GONE);
 			resumeStopContainer.setVisibility(View.VISIBLE);
 		}
 	}
@@ -557,19 +667,11 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	@Override
 	protected void onPause() {
 		super.onPause();
-		/*System.out.println("Pause");
-		GoRunFragment.map_container.setVisibility(View.GONE);*/
-		//finish();
-		//map_cover.setVisibility(View.VISIBLE);
-		
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		/*System.out.println("Resume");
-		GoRunFragment.map_container.setVisibility(View.VISIBLE);*/
-		//map_cover.setVisibility(View.GONE);
 	}
 	
 	@Override
@@ -585,4 +687,22 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		}
 	}
 	
+	//Data Structure for saving coordinates.
+	class Coordinates {
+		double lat=0,lng=0;
+		public void setLat(double lt){
+			lat = lt;
+		}
+		public void setLng(double ln){
+			lng = ln;
+		}
+	
+		public double getLat(){
+			return lat;
+		}
+		public double getLng(){
+			return lng;
+		}
+	}
+	//=========================================
 }

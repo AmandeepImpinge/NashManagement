@@ -2,8 +2,6 @@ package com.runtwo.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.runtwo.constants.GlobalConstants;
-import com.runtwo.webservice.WebServiceHandler;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -14,8 +12,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.runtwo.constants.GlobalConstants;
+import com.runtwo.webservice.WebServiceHandler;
 
 public class SearchFollowersScreen extends Fragment {
 
@@ -32,7 +34,8 @@ public class SearchFollowersScreen extends Fragment {
 	Globals global;
 	ArrayList<HashMap<String, String>> followersArrayList = new ArrayList<HashMap<String, String>>();
 	ActionBarRun ab;
-
+	FollowerFollowingAdapter searchAdapter;
+	
 	@Override
 	public View onCreateView(LayoutInflater infl, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -95,7 +98,8 @@ public class SearchFollowersScreen extends Fragment {
 			if (result.equalsIgnoreCase("true")) {
 				if (global.getFollowersSearchList().size() > 0) {
 					followersArrayList = global.getFollowersSearchList();
-					searchList.setAdapter(new FollowerFollowingAdapter());
+					searchAdapter = new FollowerFollowingAdapter();
+					searchList.setAdapter(searchAdapter);
 					if (mProgressDialog.isShowing()) {
 						mProgressDialog.dismiss();
 					}
@@ -144,7 +148,9 @@ public class SearchFollowersScreen extends Fragment {
 						.findViewById(R.id.user_name);
 				holder.img = (ImageView) convertView
 						.findViewById(R.id.user_img);
-
+				holder.plusicon = (ImageView) convertView
+						.findViewById(R.id.plus_icon);
+				
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -169,13 +175,73 @@ public class SearchFollowersScreen extends Fragment {
 			} else {
 				convertView.setBackgroundColor(Color.WHITE);
 			}
+			
+			holder.plusicon.setTag(""+position);
+			holder.plusicon.setOnClickListener(plusClickListener);
+			
 			return convertView;
 		}
 	}
 
+	OnClickListener plusClickListener = new OnClickListener() {
+		public void onClick(View v) {
+			int pos = Integer.parseInt(v.getTag().toString());
+			String id = followersArrayList.get(pos).get(GlobalConstants.FOLLOWERS_USER_ID);
+			new AddFollowers(pos).execute(""+id);
+		}
+	};
+	
 	class ViewHolder {
 		TextView username;
-		ImageView img;
+		ImageView img,plusicon;
 	}
 
+
+	class AddFollowers extends AsyncTask<String, Integer, String> {
+		int pos = 0;
+		ProgressDialog mProgressDialog = null;
+		
+		public AddFollowers(int pos) {
+			this.pos = pos;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mProgressDialog = new ProgressDialog(getActivity()).show(getActivity(),"","Adding...");
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			String result = "true";
+			try {
+				result = WebServiceHandler.addFollowersService(getActivity(),params[0],"1");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			
+			mProgressDialog.dismiss();
+			
+			if (result.equalsIgnoreCase("true")) {
+				Toast.makeText(getActivity(), "Follower Added successfully...",Toast.LENGTH_SHORT).show();
+				try {
+					followersArrayList.remove(pos);
+					searchAdapter.notifyDataSetChanged();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (result.equalsIgnoreCase("false")) {
+				Toast.makeText(getActivity(),""+ global.getMessageOfResponse(), Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(getActivity(), "Error Connecting to server.",Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+	
 }
