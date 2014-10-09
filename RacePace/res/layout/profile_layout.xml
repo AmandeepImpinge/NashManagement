@@ -383,7 +383,7 @@
             android:layout_marginTop="0.5dp"
             android:background="@color/light_grey_text_color" />
 
-        <RelativeLayout
+        <RelativeLayout   
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
             <!-- Tab Content Here -->
