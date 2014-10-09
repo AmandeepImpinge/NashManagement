@@ -27,7 +27,7 @@ public class ServiceResponseParser {
 			String acc_type = job.getString(GlobalConstants.ACCOUNT_TYPE);
 			String email = job.getString(GlobalConstants.EMAIL);
 			String username = job.getString(GlobalConstants.USERNAME);
-			String profile_img = job.getString(GlobalConstants.PROFILE_IMG);
+			String profile_img = job.getString(GlobalConstants.PROFILE_IMG);			
 			String dob = job.getString(GlobalConstants.DOB);
 			String gender = job.getString(GlobalConstants.GENDER);
 			String weight = job.getString(GlobalConstants.WEIGHT);
@@ -100,7 +100,10 @@ public class ServiceResponseParser {
 			String acc_type = job.getString(GlobalConstants.ACCOUNT_TYPE);
 			String email = job.getString(GlobalConstants.EMAIL);
 			String username = job.getString(GlobalConstants.USERNAME);
+			
 			String profile_img = job.getString(GlobalConstants.PROFILE_IMG);
+			String header_img = job.getString(GlobalConstants.TIMELINE_PIC);
+			
 			String dob = job.getString(GlobalConstants.DOB);
 			String gender = job.getString(GlobalConstants.GENDER);
 			String weight = job.getString(GlobalConstants.WEIGHT);
@@ -137,7 +140,10 @@ public class ServiceResponseParser {
 			maps.put(GlobalConstants.ACCOUNT_TYPE, acc_type);
 			maps.put(GlobalConstants.EMAIL, email);
 			maps.put(GlobalConstants.USERNAME, username);
+			
 			maps.put(GlobalConstants.PROFILE_IMG, profile_img);
+			maps.put(GlobalConstants.TIMELINE_PIC, header_img);
+			
 			maps.put(GlobalConstants.DOB, dob);
 			maps.put(GlobalConstants.GENDER, gender);
 			maps.put(GlobalConstants.WEIGHT, weight);
@@ -467,109 +473,6 @@ public class ServiceResponseParser {
 		return result;
 	}
 
-	//=============================
-	
-	//ACHIEVEMENTS Parser================
-	public static String achievementParser(Globals global,JSONArray data) {
-		String result = "true";
-		try {
-			int len = data.length();
-			
-			HashMap<String,ArrayList<HashMap<String,String>>> mainMap = new HashMap<String,ArrayList<HashMap<String,String>>>();
-			
-			ArrayList<HashMap<String,String>> plaqueList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> largegoldList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> medalList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> ribbonList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> trophyList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> beltbuckleList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> plateList = new ArrayList<HashMap<String,String>>();
-			ArrayList<HashMap<String,String>> cupList = new ArrayList<HashMap<String,String>>();
-			
-			for(int i=0;i<len;i++){
-				JSONObject job = data.getJSONObject(i);
-				
-				String id = job.getString(GlobalConstants.GET_ACHIEVEMENT_ID);
-				String milestone = job.getString(GlobalConstants.GET_ACHIEVEMENT_MILESTONE);
-				String coins = job.getString(GlobalConstants.GET_ACHIEVEMENT_COINS);
-				String ach_award = job.getString(GlobalConstants.GET_ACHIEVEMENT_AWARD);
-				String color = job.getString(GlobalConstants.GET_ACHIEVEMENT_COLOR);
-				String type = job.getString(GlobalConstants.GET_ACHIEVEMENT_AWARD_TYPE);
-				String details = job.getString(GlobalConstants.GET_ACHIEVEMENT_ACHEIEVEMENT_DETAIL);
-				String age_desc = job.getString(GlobalConstants.GET_ACHIEVEMENT_AGE_DESC);
-				String gender = job.getString(GlobalConstants.GET_ACHIEVEMENT_GENDER);
-				String user_id = job.getString(GlobalConstants.GET_ACHIEVEMENT_USER_ID);
-				String user_Ach_id = job.getString(GlobalConstants.GET_ACHIEVEMENT_USER_ACH_ID);
-				
-				HashMap<String,String> maps = new HashMap<String, String>();
-				
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_ID,id);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_MILESTONE,milestone);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_COINS,coins);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_AWARD,ach_award);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_COLOR,color);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_AWARD_TYPE,type);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_ACHEIEVEMENT_DETAIL,details);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_AGE_DESC,age_desc);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_GENDER,gender);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_USER_ID,user_id);
-				maps.put(GlobalConstants.GET_ACHIEVEMENT_USER_ACH_ID,user_Ach_id);
-				
-				if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_PLAQUE)){
-					plaqueList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_LARGEGOLD_WIMB)){
-					largegoldList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_MEDAL)){
-					medalList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_RIBBON)){
-					ribbonList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_TROPHY)){
-					trophyList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_BELT_BUCKLE)){
-					beltbuckleList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_PLATE)){
-					plateList.add(maps);
-				}else if(type.equalsIgnoreCase(GlobalConstants.ACHIEVEMENT_CUP)){
-					cupList.add(maps);
-				}
-			}
-			
-			if(plaqueList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_PLAQUE,plaqueList);
-			}
-			if(largegoldList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_LARGEGOLD_WIMB,largegoldList);
-			}
-			if(medalList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_MEDAL,medalList);
-			}
-			if(ribbonList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_RIBBON,ribbonList);
-			}
-			if(trophyList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_TROPHY,trophyList);
-			}
-			if(beltbuckleList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_BELT_BUCKLE,beltbuckleList);
-			}
-			if(plateList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_PLATE,plateList);
-			}
-			if(cupList.size() > 0){
-				mainMap.put(GlobalConstants.ACHIEVEMENT_CUP,cupList);
-			}
-
-			global.setAchievementData(mainMap);
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-			result = "error";
-		}
-		return result;
-	}
-	//=============================
-
-
 	// =============================
 	// User Details Parser
 
@@ -594,6 +497,9 @@ public class ServiceResponseParser {
 			String tShirtSize = job.getString(GlobalConstants.TSHIRT_SIZE);
 			String shoeSize = job.getString(GlobalConstants.SHOE_SIZE);
 			
+			String profileImage = job.getString(GlobalConstants.PROFILE_IMG);
+			String timeLineImage = job.getString(GlobalConstants.TIMELINE_PIC);
+			
 			String profileCompletion = job.getString(GlobalConstants.TOTAL_PROFILE_COMPLETION);
 
 			HashMap<String, String> maps = global.getUserData();
@@ -613,6 +519,8 @@ public class ServiceResponseParser {
 			maps.put(GlobalConstants.TSHIRT_SIZE, tShirtSize);
 			maps.put(GlobalConstants.SHOE_SIZE, shoeSize);	
 			maps.put(GlobalConstants.PROFILE_COMPLETION, profileCompletion);	
+			maps.put(GlobalConstants.PROFILE_IMG, profileImage);	
+			maps.put(GlobalConstants.TIMELINE_PIC, timeLineImage);	
 
 			global.setUserData(maps);
 
@@ -622,6 +530,5 @@ public class ServiceResponseParser {
 		}
 		return result;
 	}
-
 
 }

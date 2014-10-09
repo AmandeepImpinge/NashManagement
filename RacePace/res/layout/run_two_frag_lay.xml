@@ -240,21 +240,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:visibility="gone" />
-            
-            <com.runtwo.customfonts.TextViewHelveticaBdcnZero
-                android:id="@+id/gorun_btn"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/start_btn_back"
-                android:gravity="center"
-                android:text="GO RUN"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 android:visibility="visible" />
-            
         </RelativeLayout>
 
         <RelativeLayout 

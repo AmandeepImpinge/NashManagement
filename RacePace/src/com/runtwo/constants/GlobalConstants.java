@@ -13,6 +13,9 @@ public class GlobalConstants {
 	//=====================
 	public static final int POST_GALLERY = 120;
 	public static final int POST_CAMERA = 130;
+	
+	public static final int HEADER_GALLERY = 220;
+	public static final int HEADER_CAMERA = 230;
 	//=====================
 
 	public static final String CODE = "code";
@@ -171,51 +174,6 @@ public class GlobalConstants {
 	//UPDATE USER DETAILS=================
 	public static final String UPDATE_USER_DETAIL_URL = COMMON_URL+"user/updateUser/format/json";
 	
-
-	//GET ACHIEVEMENTS==============
-	public static final String GET_ACHIEVEMENT_URL = COMMON_URL+"Challenge/getUsersAchievements/format/json";
-	public static final String GET_ACHIEVEMENT_ID = "achievement_id";
-	public static final String GET_ACHIEVEMENT_MILESTONE = "milestone";
-	public static final String GET_ACHIEVEMENT_COINS = "coins";
-	public static final String GET_ACHIEVEMENT_AWARD = "award";
-	public static final String GET_ACHIEVEMENT_COLOR = "color";
-	public static final String GET_ACHIEVEMENT_AWARD_TYPE = "award_type";
-	public static final String GET_ACHIEVEMENT_ACHEIEVEMENT_DETAIL = "achievement_detail";
-	public static final String GET_ACHIEVEMENT_AGE_DESC = "age_desc";
-	public static final String GET_ACHIEVEMENT_TOTAL_COUNT = "totalCnt";
-	public static final String GET_ACHIEVEMENT_GENDER = "gender";
-	public static final String GET_ACHIEVEMENT_USER_ID = "user_id";
-	public static final String GET_ACHIEVEMENT_USER_ACH_ID = "user_achievement_id";
-	
-	//Achievement types
-	public static final String ACHIEVEMENT_PLAQUE = "Plaque";
-	public static final String ACHIEVEMENT_LARGEGOLD_WIMB = "Large Gold Plate like Wimbledon";
-	public static final String ACHIEVEMENT_MEDAL = "Medal";
-	public static final String ACHIEVEMENT_RIBBON = "Ribbon";
-	public static final String ACHIEVEMENT_TROPHY = "Trophy";
-	public static final String ACHIEVEMENT_BELT_BUCKLE = "Belt Buckle";
-	public static final String ACHIEVEMENT_PLATE = "Plate";
-	public static final String ACHIEVEMENT_CUP = "Cup";
-	//==============================
-	
-	//ADD RACE DETAILS==============
-	
-	/*{"access_token":"QG67GGPU1RQS6VFO1O4B","challenge_id":"1","travel_path":"","distance":"500","race_id":"1",
-	"challenge_goal":"1000",”travel_distance”:”500”}*/
-	//calories,duration,message,profile_img,img_name,current_pace
-	public static final String ADD_RACEDET_URL = "Challenge/addRaceDetails/format/json";
-	public static final String ADD_RACEDET_CHALLENGE_ID = "challenge_id";
-	public static final String ADD_RACEDET_TRAVEL_PATH = "travel_path";
-	public static final String ADD_RACEDET_DISTANCE = "distance";
-	public static final String ADD_RACEDET_RACE_ID = "race_id";
-	public static final String ADD_RACEDET_CHALLENGE_GOAL = "challenge_goal";
-	public static final String ADD_RACEDET_TRAVEL_DISTANCE = "travel_distance";
-	public static final String ADD_RACEDET_CALORIES = "calories";
-	public static final String ADD_RACEDET_DURATION = "duration";
-	public static final String ADD_RACEDET_MESSAGE = "message";
-	public static final String ADD_RACEDET_PROFILE_IMG = "profile_img";
-	public static final String ADD_RACEDET_IMG_NAME = "img_name";
-	public static final String ADD_RACEDET_CURRENT_PACE = "current_pace";
 	//==============================
 
 }

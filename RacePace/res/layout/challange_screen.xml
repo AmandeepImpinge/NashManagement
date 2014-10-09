@@ -41,8 +41,8 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@color/gird_list_container_border" />
 
         <TextView
@@ -60,8 +60,8 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:background="@color/gird_list_container_border" />
 
         <TextView
@@ -85,174 +85,24 @@
         <LinearLayout
             android:id="@+id/start_challenge_lay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="match_parent" >
 
-            <View
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/gird_list_container_back"
-                android:padding="5dp" >
-
-                <com.runtwo.customfonts.EditTextHelveticaLtZero
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/round_corner_white_back"
-                    android:gravity="center"
-                    android:hint="CHALLENGE TITLE"
-                    android:padding="3dp"
-                    android:singleLine="true"
-                    android:textColor="@color/blue_text_color"
-                    android:textColorHint="@color/blue_text_color"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
-
-            <LinearLayout
-                android:id="@+id/howtowin_container"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/gird_list_container_back"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="HOW TO WIN"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/howtowin_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:text="JUST FINISH"
-                    android:textColor="@color/blue_text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
-
-            <LinearLayout
-                android:id="@+id/dist_container"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/gird_list_container_back"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DISTANCE"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/distance_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:textColor="@color/blue_text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
-
-            <LinearLayout
-                android:id="@+id/start_date_container"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/gird_list_container_back"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="START DATE"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/startdate_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:textColor="@color/blue_text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
-
-            <LinearLayout
-                android:id="@+id/finish_date_container"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/gird_list_container_back"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="FINISH DATE"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/finishdate_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:textColor="@color/blue_text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@color/gird_list_container_border" />
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Start Challenge"
+                android:textColor="@color/light_grey_text_color"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/join_challenge_lay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" >
+            android:layout_height="match_parent" 
+            android:visibility="gone"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -267,8 +117,9 @@
         <LinearLayout
             android:id="@+id/my_challenge_lay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" >
+            android:layout_height="match_parent" 
+            android:visibility="gone"
+            >
 
             <TextView
                 android:layout_width="match_parent"
