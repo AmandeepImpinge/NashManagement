@@ -82,12 +82,13 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 		});
 		
 		new CallFeedService().execute("");
-		
+		 
 		container.setOnKeyListener(this);
 		return container; 
 	}
 	
-	private void initViews(ViewGroup container){
+
+	  private void initViews(ViewGroup container){
 		
 		searchIcon = (ImageView)container.findViewById(R.id.search_icon);
 		postIcon = (ImageView)container.findViewById(R.id.post_icon);

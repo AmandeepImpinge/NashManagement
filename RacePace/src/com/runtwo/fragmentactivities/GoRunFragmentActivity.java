@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.xml.datatype.Duration;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -594,6 +596,20 @@ public class GoRunFragmentActivity extends FragmentActivity{
 	}
 	
 	private void handleStopClick(){
+		Intent in = new Intent(this,AddPictureActivity.class);
+		in.putExtra(GlobalConstants.ADD_RACEDET_DISTANCE,milesText.getText().toString()+"");
+		in.putExtra(GlobalConstants.ADD_RACEDET_DURATION,timerText.getText().toString()+"");
+		in.putExtra(GlobalConstants.ADD_RACEDET_CALORIES,caloriesText.getText().toString()+"");
+		in.putExtra(GlobalConstants.ADD_RACEDET_CURRENT_PACE,paceText.getText().toString()+"");
+		
+		ArrayList<String> llist = new ArrayList<String>();
+		int upto = locCoodList.size();
+		for(int i=0;i<upto;i++){
+			String s = locCoodList.get(i).latitude+","+locCoodList.get(i).longitude;
+			llist.add(s);
+		}
+		global.setRunningTrackedPath(llist);
+	
 		//take user to final screens
 		stopMyTimer();
 		
@@ -618,8 +634,8 @@ public class GoRunFragmentActivity extends FragmentActivity{
 		//make GoRun visible
 		handleVisibilityOfButtons(0);
 		
-		Intent i = new Intent(this,AddPictureActivity.class);
-		startActivity(i);
+		//start activities with all data as extras
+		startActivity(in);
 	}
 	
 	private void playStartSound() {

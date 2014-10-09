@@ -49,7 +49,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	LinearLayout wallBtn,photosBtn,meBtn,togetherBtn,workoutBtn;
 	TextView wallText,photosText,meText,togetherText,workoutText;
 	ImageView wallImg,photosImg,meImg,togetherImg,workoutImg;
-	LinearLayout wallLay,photosLay,meLay,togetherLay,workoutLay;
+	//LinearLayout wallLay,photosLay,meLay,togetherLay,workoutLay;
 	//===
 	
 	//List and Grid Btns
@@ -135,19 +135,19 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		//===============
 		
 		//containers=====
-		wallLay = (LinearLayout)container.findViewById(R.id.wall_lay);
+		/*wallLay = (LinearLayout)container.findViewById(R.id.wall_lay);
 		photosLay = (LinearLayout)container.findViewById(R.id.photos_lay);
 		meLay = (LinearLayout)container.findViewById(R.id.me_lay);
 		togetherLay = (LinearLayout)container.findViewById(R.id.together_lay);
-		workoutLay = (LinearLayout)container.findViewById(R.id.workout_lay);
+		workoutLay = (LinearLayout)container.findViewById(R.id.workout_lay);*/
 		//===============
 		
-		//List grid Btns
+		//List grid BtnsQA
 		listBtnWall = (ImageView)container.findViewById(R.id.list_btn_wall);
 		gridBtnWall = (ImageView)container.findViewById(R.id.grid_btn_wall);
 		listBtnPhotos = (ImageView)container.findViewById(R.id.list_btn_photos);
 		gridBtnPhotos = (ImageView)container.findViewById(R.id.grid_btn_photos);
-		listBtnMe = (ImageView)container.findViewById(R.id.list_btn_me);
+		listBtnMe = (ImageView)container.findViewById(R.id.list_btn_me); 
 		gridBtnMe = (ImageView)container.findViewById(R.id.grid_btn_me);
 		listBtnTogether = (ImageView)container.findViewById(R.id.list_btn_together);
 		gridBtnTogether = (ImageView)container.findViewById(R.id.grid_btn_together);
@@ -307,11 +307,11 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	
 	public void handleCustomTabsClicked(int which){
 		
-		wallLay.setVisibility(View.GONE);
+		/*wallLay.setVisibility(View.GONE);
 		photosLay.setVisibility(View.GONE);
 		meLay.setVisibility(View.GONE);
 		togetherLay.setVisibility(View.GONE);
-		workoutLay.setVisibility(View.GONE);
+		workoutLay.setVisibility(View.GONE);*/
 		
 		wallText.setTextColor(Color.BLACK);
 		photosText.setTextColor(Color.BLACK);
@@ -329,27 +329,27 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		case 1:
 			wallText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			wallImg.setImageResource(R.drawable.wall_icon_selected);
-			wallLay.setVisibility(View.VISIBLE);
+			//wallLay.setVisibility(View.VISIBLE);
 			break;
 		case 2:
 			photosText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			photosImg.setImageResource(R.drawable.photo_icon_selected);
-			photosLay.setVisibility(View.VISIBLE);
+			//photosLay.setVisibility(View.VISIBLE);
 			break;
 		case 3:
 			meText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			meImg.setImageResource(R.drawable.me_icon_selected);
-			meLay.setVisibility(View.VISIBLE);
+			//meLay.setVisibility(View.VISIBLE);
 			break;
 		case 4:
 			togetherText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			togetherImg.setImageResource(R.drawable.together_selected);
-			togetherLay.setVisibility(View.VISIBLE);
+			//togetherLay.setVisibility(View.VISIBLE);
 			break;
 		case 5:
 			workoutText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			workoutImg.setImageResource(R.drawable.workout_selected);
-			workoutLay.setVisibility(View.VISIBLE);
+			//workoutLay.setVisibility(View.VISIBLE);
 			break;
 		}
 	}
@@ -381,7 +381,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_CUP)){
 			addAchievementToUI(GlobalConstants.ACHIEVEMENT_CUP,maps.get(GlobalConstants.ACHIEVEMENT_CUP));
 		}
-		
 	}
 	
 	public void addAchievementToUI(String key,ArrayList<HashMap<String,String>> list){

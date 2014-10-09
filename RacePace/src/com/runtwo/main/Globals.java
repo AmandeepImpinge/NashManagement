@@ -206,4 +206,14 @@ public class Globals extends Application{
 		this.achievementData = achievementData;
 	}
 	//===================================================
+	
+	//ArrayList for saving the coordinates recorded while running==
+	ArrayList<String> runningTrackedPath = new ArrayList<String>();
+	public void setRunningTrackedPath(ArrayList<String> llist) {
+		runningTrackedPath = llist;
+	}
+	public ArrayList<String> getRunningTrackedPath(){
+		return runningTrackedPath;
+	}
+	//==============================================================
 }	
