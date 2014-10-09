@@ -349,7 +349,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			meText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			meImg.setImageResource(R.drawable.me_icon_selected);
 			meLay.setVisibility(View.VISIBLE);
-			break;
+			break;     
 		case 4:
 			togetherText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			togetherImg.setImageResource(R.drawable.together_selected);
