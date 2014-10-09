@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.runtwo.constants.GlobalConstants;
 import com.runtwo.main.HomeFragment.NewsListAdapter;
+import com.runtwo.utils.ImageDownloader;
 import com.runtwo.webservice.WebServiceHandler;
 
 import android.app.ProgressDialog;
@@ -42,98 +43,113 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	TextView username,followers,following,group,totalMiles;
 	Globals global;
 	ProgressDialog mProgressDialog;
-	
+	private ImageView profileImage,headerImage;
+
 	RelativeLayout imageContainer;
-	
+
 	//Custom Tabs and Contents
 	LinearLayout wallBtn,photosBtn,meBtn,togetherBtn,workoutBtn;
 	TextView wallText,photosText,meText,togetherText,workoutText;
 	ImageView wallImg,photosImg,meImg,togetherImg,workoutImg;
 	//LinearLayout wallLay,photosLay,meLay,togetherLay,workoutLay;
 	//===
-	
+
 	//List and Grid Btns
 	ImageView listBtnWall,gridBtnWall,listBtnPhotos,gridBtnPhotos,listBtnMe,gridBtnMe,
-			  listBtnTogether,gridBtnTogether,listBtnWorkout,gridBtnWorkout;
+	listBtnTogether,gridBtnTogether,listBtnWorkout,gridBtnWorkout;
 	//===
-	
+
 	int CurrentCustomTab = 1;
-	LinearLayout achievementContainer;
-	
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		container = (LinearLayout)inflater.inflate(R.layout.profile_layout,null);
-		
+
 		ab = (ActionBarRun) container.findViewById(R.id.action_bar);
- 		ab.findViewById(R.id.menu_icon).setOnClickListener(new OnClickListener() {
+		ab.findViewById(R.id.menu_icon).setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MainTabActivity.menu.showMenu();
 			}
 		});
- 		
- 		ab.findViewById(R.id.run_txt).setVisibility(View.INVISIBLE);
- 		
- 		global = (Globals)getActivity().getApplicationContext();
- 		this.inflater = inflater;
- 		res = getResources();
-		
- 		initViews(container);
+
+		ab.findViewById(R.id.run_txt).setVisibility(View.INVISIBLE);
+
+		global = (Globals)getActivity().getApplicationContext();
+		this.inflater = inflater;
+		res = getResources();
+
+		initViews(container);
 		handleClicks();
- 		
-		HashMap<String,String> userMap = global.getUserData(); 
-		
-		username.setText(global.getUserName());
+
+		//HashMap<String,String> userMap = global.getUserData(); 
+		//Log.v("userMap", ""+userMap);
+
+		/*username.setText(global.getUserName());
 		followers.setText(userMap.get(GlobalConstants.MY_FOLLOWERS));
 		following.setText(userMap.get(GlobalConstants.I_FOLLOWING));
 		group.setText(userMap.get(GlobalConstants.GP_COUNT));
 		totalMiles.setText(userMap.get(GlobalConstants.TOTAL_DISTANCE));
-		
-		ft = getFragmentManager().beginTransaction();
-		
-		//addAchievements();
-		
-		new CallService().execute("");
-		
+
+		String profilePic = userMap.get(GlobalConstants.PROFILE_IMG); 
+		if (profilePic != null) {
+			Log.v("profilePic", profilePic);
+
+			ImageDownloader imgDownload = ImageDownloader.getInstance();
+			imgDownload.download(profilePic, profileImage, getActivity());
+		}
+
+		String headerPic = userMap.get(GlobalConstants.TIMELINE_PIC); 
+		if (headerPic != null) {
+			Log.v("headerPic", headerPic);
+
+			ImageDownloader imgDownload = ImageDownloader.getInstance();
+			imgDownload.download(headerPic, headerImage, getActivity());
+		}*/
+
+		ft = getFragmentManager().beginTransaction();		
 		container.setOnKeyListener(this);
 		return container; 
 	}
 
-	
+
 	private void initViews(ViewGroup container){
 		follower_btn = (LinearLayout)container.findViewById(R.id.followers_btn);
 		following_btn = (LinearLayout)container.findViewById(R.id.following_btn);
 		groups_btn = (LinearLayout)container.findViewById(R.id.groups_btn);
-		
+
 		username = (TextView)container.findViewById(R.id.username_new);
 		followers = (TextView)container.findViewById(R.id.no_followers);
 		following = (TextView)container.findViewById(R.id.no_followings);
 		group = (TextView)container.findViewById(R.id.no_groups);
 		totalMiles = (TextView)container.findViewById(R.id.no_miles_new);
- 		
+
 		imageContainer = (RelativeLayout)container.findViewById(R.id.img_container);
-		
-		//custom tabs===
+
+		//custom tabs
 		wallBtn = (LinearLayout)container.findViewById(R.id.wall_btn);
 		photosBtn = (LinearLayout)container.findViewById(R.id.photos_btn);
 		meBtn = (LinearLayout)container.findViewById(R.id.me_btn);
 		togetherBtn = (LinearLayout)container.findViewById(R.id.together_btn);
 		workoutBtn = (LinearLayout)container.findViewById(R.id.workout_btn);
-		
+
 		wallText = (TextView)container.findViewById(R.id.cus_tab_txt1);
 		photosText = (TextView)container.findViewById(R.id.cus_tab_txt2);
 		meText = (TextView)container.findViewById(R.id.cus_tab_txt3);
 		togetherText = (TextView)container.findViewById(R.id.cus_tab_txt4);
 		workoutText = (TextView)container.findViewById(R.id.cus_tab_txt5);
-		
+
 		wallImg = (ImageView)container.findViewById(R.id.cus_tab_img1);
 		photosImg = (ImageView)container.findViewById(R.id.cus_tab_img2);
 		meImg = (ImageView)container.findViewById(R.id.cus_tab_img3);
 		togetherImg = (ImageView)container.findViewById(R.id.cus_tab_img4);
 		workoutImg = (ImageView)container.findViewById(R.id.cus_tab_img5);
-		//===============
-		
+
+		profileImage = (ImageView)container.findViewById(R.id.profile_image);
+		headerImage = (ImageView)container.findViewById(R.id.cover_image);
+
+		//==========
+
 		//containers=====
 		/*wallLay = (LinearLayout)container.findViewById(R.id.wall_lay);
 		photosLay = (LinearLayout)container.findViewById(R.id.photos_lay);
@@ -141,8 +157,10 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		togetherLay = (LinearLayout)container.findViewById(R.id.together_lay);
 		workoutLay = (LinearLayout)container.findViewById(R.id.workout_lay);*/
 		//===============
-		
+
 		//List grid BtnsQA
+
+		//List grid Btns
 		listBtnWall = (ImageView)container.findViewById(R.id.list_btn_wall);
 		gridBtnWall = (ImageView)container.findViewById(R.id.grid_btn_wall);
 		listBtnPhotos = (ImageView)container.findViewById(R.id.list_btn_photos);
@@ -154,8 +172,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		listBtnWorkout = (ImageView)container.findViewById(R.id.list_btn_workout);
 		gridBtnWorkout = (ImageView)container.findViewById(R.id.grid_btn_workout);
 		//==============
-		
-		achievementContainer = (LinearLayout)container.findViewById(R.id.achievement_container);
+
 	}
 
 	private void handleClicks(){
@@ -183,20 +200,20 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				ft.commit();
 			}
 		});
-		
+
 		imageContainer.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				
+
 				Intent iProfileSetup = new Intent(getActivity(), ProfileSetupFirst.class);
 				startActivity(iProfileSetup);
-				
+
 				/*Fragment f = new ProfileSetupFirst();
 				ft.replace(R.id.contentintab,f);
 				ft.addToBackStack("home");
 				ft.commit();*/
 			}
 		});
-		
+
 		wallBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 1){
@@ -205,7 +222,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
-		
 		photosBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 2){
@@ -214,7 +230,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
-		
 		meBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 3){
@@ -223,7 +238,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
-		
 		togetherBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 4){
@@ -232,7 +246,6 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
-		
 		workoutBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(CurrentCustomTab != 5){
@@ -241,14 +254,13 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 				}
 			}
 		});
-		
+
 		listBtnWall.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				listBtnWall.setImageResource(R.drawable.list_btn_selected);
 				gridBtnWall.setImageResource(R.drawable.grid_btn_unselected);
 			}
 		});
-		
 		gridBtnWall.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				listBtnWall.setImageResource(R.drawable.list_btn_unselected);
@@ -304,10 +316,12 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			}
 		});
 	}
-	
+
 	public void handleCustomTabsClicked(int which){
 		
 		/*wallLay.setVisibility(View.GONE);
+
+		wallLay.setVisibility(View.GONE);
 		photosLay.setVisibility(View.GONE);
 		meLay.setVisibility(View.GONE);
 		togetherLay.setVisibility(View.GONE);
@@ -318,13 +332,13 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		meText.setTextColor(Color.BLACK);
 		togetherText.setTextColor(Color.BLACK);
 		workoutText.setTextColor(Color.BLACK);
-		
+
 		wallImg.setImageResource(R.drawable.wall_icon_unselected);
 		photosImg.setImageResource(R.drawable.photo_icon_unselected);
 		meImg.setImageResource(R.drawable.me_icon_unselected);
 		togetherImg.setImageResource(R.drawable.together_unselected);
 		workoutImg.setImageResource(R.drawable.workout_unselected);
-		
+
 		switch (which) {
 		case 1:
 			wallText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
@@ -340,7 +354,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			meText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			meImg.setImageResource(R.drawable.me_icon_selected);
 			//meLay.setVisibility(View.VISIBLE);
-			break;
+			break;     
 		case 4:
 			togetherText.setTextColor(res.getColor(R.color.topbar_blue_back_color));
 			togetherImg.setImageResource(R.drawable.together_selected);
@@ -355,7 +369,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 	}
 	
 	public void addAchievements(){
-		HashMap<String,ArrayList<HashMap<String,String>>> maps = global.getAchievementData();
+		/*HashMap<String,ArrayList<HashMap<String,String>>> maps = global.getAchievementData();
 		
 		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_PLAQUE)){
 			addAchievementToUI(GlobalConstants.ACHIEVEMENT_PLAQUE,maps.get(GlobalConstants.ACHIEVEMENT_PLAQUE));
@@ -380,7 +394,7 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		}
 		if(maps.containsKey(GlobalConstants.ACHIEVEMENT_CUP)){
 			addAchievementToUI(GlobalConstants.ACHIEVEMENT_CUP,maps.get(GlobalConstants.ACHIEVEMENT_CUP));
-		}
+		}*/
 	}
 	
 	public void addAchievementToUI(String key,ArrayList<HashMap<String,String>> list){
@@ -395,6 +409,8 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 		}*/
 	}
 	
+
+
 	@Override
 	public boolean onKey(View v, int keyCode, KeyEvent event) {
 		Log.e("key","pressed");
@@ -417,25 +433,25 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			super.onPreExecute();
 			mProgressDialog = new ProgressDialog(getActivity()).show(getActivity(),"","Loading...");
 		}
-		
+
 		@Override
 		protected String doInBackground(String... params) {
 			String result = "true";
 			try {
-				result = WebServiceHandler.getAchievementService(getActivity(),"");
+				//result = WebServiceHandler.getFollowerFeedService(getActivity());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return result;
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {     
 			super.onPostExecute(result);
 			mProgressDialog.dismiss();
-			
+
 			if(result.equalsIgnoreCase("true")){
-				addAchievements();
+
 			}else if(result.equalsIgnoreCase("false")){
 				Toast.makeText(getActivity(),""+global.getMessageOfResponse(),Toast.LENGTH_SHORT).show();
 			}else{
@@ -443,5 +459,35 @@ public class ProfileFragment extends Fragment implements OnKeyListener{
 			}
 		}
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		HashMap<String,String> userMap = global.getUserData(); 
+		Log.v("userMap", ""+userMap);
+
+		username.setText(global.getUserName());
+		followers.setText(userMap.get(GlobalConstants.MY_FOLLOWERS));
+		following.setText(userMap.get(GlobalConstants.I_FOLLOWING));
+		group.setText(userMap.get(GlobalConstants.GP_COUNT));
+		totalMiles.setText(userMap.get(GlobalConstants.TOTAL_DISTANCE));
+
+		String profilePic = userMap.get(GlobalConstants.PROFILE_IMG); 
+		if (profilePic != null) {
+			Log.v("profilePic", profilePic);
+
+			ImageDownloader imgDownload = ImageDownloader.getInstance();
+			imgDownload.download(profilePic, profileImage, getActivity());
+		}
+
+		String headerPic = userMap.get(GlobalConstants.TIMELINE_PIC); 
+		if (headerPic != null) {
+			Log.v("headerPic", headerPic);
+
+			ImageDownloader imgDownload = ImageDownloader.getInstance();
+			imgDownload.download(headerPic, headerImage, getActivity());
+		}
+	}
+
 }

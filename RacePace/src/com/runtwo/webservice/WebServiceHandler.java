@@ -18,9 +18,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.Log;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.runtwo.constants.GlobalConstants;
 import com.runtwo.main.Globals;
 import com.runtwo.utils.Utils;
@@ -690,8 +687,6 @@ public class WebServiceHandler {
 		Globals global = (Globals)c.getApplicationContext();
 		String result ="error";
 
-		
- 		
 		try {
 			JSONObject obj = new JSONObject();
 			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
@@ -736,59 +731,6 @@ public class WebServiceHandler {
 		return result;
 	}
 	//==============================
-
-	
-	
-	//GET ACHIEVEMENTS====================================
-	public static String getAchievementService(Context c,String achid){
-		Globals global = (Globals)c.getApplicationContext();
-		String result ="error";
-		
-		try {
-			JSONObject obj = new JSONObject();
-			obj.put(GlobalConstants.ACCESS_TOKEN,""+global.getAccessToken());
-			obj.put(GlobalConstants.GET_ACHIEVEMENT_ID,achid);
-			
-			HttpClient client = new DefaultHttpClient();
-            HttpResponse response;
-            
-            try {
-                HttpPost post = new HttpPost(GlobalConstants.GET_ACHIEVEMENT_URL);
-                List<NameValuePair> list = new ArrayList<NameValuePair>(1);
-                list.add(new BasicNameValuePair("JsonObject",obj.toString()));
-                post.setEntity(new UrlEncodedFormEntity(list,"UTF-8"));
-                response = client.execute(post);
-                
-                if(response!=null){
-                	result = EntityUtils.toString(response.getEntity());//Get the data in the entity
-                	Log.v("Result is",""+result);
-                }
-                
-                if(result.length() > 0){
-                	JSONObject job = new JSONObject(result); 
-                	
-                	String code = ""+job.getString(GlobalConstants.CODE);
-                	if(code.equals("0")){
-                		result = "false";
-                		global.setMessageOfResponse(job.getString(GlobalConstants.MESSAGE));
-                	}else if(code.equals("1")){
-                		JSONArray dataar = job.getJSONArray(GlobalConstants.DATA);
-                		result = ServiceResponseParser.achievementParser(global, dataar);
-                	}
-                }else{
-                	result = "error";
-                }
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	//==============================
-	
 
 	// Update User Details ====================
 
@@ -868,7 +810,8 @@ public class WebServiceHandler {
 		} 
 		return result;
 	}
-
+	
+	
 	//ADD RACE DETAILS SERVICE====================================
 	public static String addRaceDetailsService(Context c,String chl_id,String travel_path,String dist,String raceid,
 											   String chal_goal,String traveldist,String calories,String dur,

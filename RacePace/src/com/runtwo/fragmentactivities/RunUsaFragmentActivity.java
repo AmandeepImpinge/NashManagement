@@ -198,7 +198,7 @@ public class RunUsaFragmentActivity extends FragmentActivity{
 				}
 			}
 		}
-	 	//Log.e("lats lngs",""+startLat+","+startLng+" : "+endLat+","+endLng);
+		//Log.e("lats lngs",""+startLat+","+startLng+" : "+endLat+","+endLng);
 		if(allLatLngs.size() > 0){
 			routePolyOptions.addAll(allLatLngs);
 			routePolyOptions.color(routecolor).width(4);
@@ -216,17 +216,15 @@ public class RunUsaFragmentActivity extends FragmentActivity{
 		if(route != null){
 			route.remove();
 		}
-		try {
-			int size = routePolyOptions.getPoints().size();
-			Log.e("adding","route points : "+size);
-			route = mMap.addPolyline(routePolyOptions);
-			
-			startMarker = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.start_route_marker)).position(new LatLng(startLat,startLng)));
-			endMarker =  mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.stop_route_marker)).position(new LatLng(endLat,endLng)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
+		int size = routePolyOptions.getPoints().size();
+		Log.e("adding","route points : "+size);
+		route = mMap.addPolyline(routePolyOptions);
+		
+		
+		 
+		startMarker = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.start_route_marker)).position(new LatLng(startLat,startLng)));
+		endMarker =  mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.stop_route_marker)).position(new LatLng(endLat,endLng)));
 		try {
 			mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundbuilder.build(),25));
 		} catch (Exception e) {

@@ -124,10 +124,10 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 				new PostOnRun().execute("");
 			}else{
 				Toast.makeText(getActivity(),"Enter some text to be shared.", Toast.LENGTH_SHORT).show();
-			}    
+			}
 			break;
 		case R.id.cancel_txt:
-			try {  
+			try {
 				getFragmentManager().popBackStack();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -190,6 +190,7 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 		}
 	}
 
+
 	public void createPictureDialog(){
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -200,7 +201,8 @@ public class PostFragment extends Fragment implements OnClickListener, OnKeyList
 				switch (which) {
 				case 0: 
 					Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+					if (takePictureIntent.resolveActivity(getActivity()
+							.getPackageManager()) != null) {
 						startActivityForResult(takePictureIntent, GlobalConstants.POST_CAMERA);					        
 					}
 					dialog.dismiss();

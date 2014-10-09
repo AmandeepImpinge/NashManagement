@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment implements OnKeyListener{
 			}
 		});
  		
+ 		
  		global = (Globals)getActivity().getApplicationContext();
  		this.inflater = inflater;
  		
