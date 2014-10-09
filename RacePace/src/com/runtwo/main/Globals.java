@@ -14,7 +14,7 @@ public class Globals extends Application{
 	int deviceWidth = 480;
 	public int getDeviceWidth() {
 		return deviceWidth;
-	}
+	}  
 	public void setDeviceWidth(int deviceWidth) {
 		this.deviceWidth = deviceWidth;
 	}
